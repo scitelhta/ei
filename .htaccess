@@ -1,0 +1,4 @@
+Options +FollowSymlinks
+RewriteEngine on
+RewriteRule ^(.*)\.html$ $1.php [NC]
+RewriteRule ^[a-z0-9_]+$ /index.php?do=$0 [NC]

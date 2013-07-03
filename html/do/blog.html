@@ -1,0 +1,32 @@
+<script type="text/javascript">
+
+</script>
+<script type='text/javascript' src='php/jqm.infinitescroll.js'></script>
+
+{% include ('do/xblog.html') %}
+
+
+   <a id="nextPage" href="?do=xblog">Next Page</a>
+
+
+<script type="text/javascript">
+function infi() {
+	$('#list').infinitescroll({
+		// required options
+		navElement: '#nextPage',
+		itemsToLoad: 'div.lista'
+	}, function(t){
+		//alert(t);
+		$("#nextPage").before(t);
+		$(".lista").collapsible();
+		$(".lista ul").listview();
+		// optional callback function
+		//$('#list').listview('refresh');
+		infi();
+	});
+}
+$(document).ready(function() {
+	infi();
+	});
+
+</script>

@@ -1,0 +1,1 @@
+&quot;Estudiantes del Instante&quot; se abre a Ecuador, iniciando con terapias de Ayahuasca... <br/>http://www.facebook.com/groups/472536309447857/

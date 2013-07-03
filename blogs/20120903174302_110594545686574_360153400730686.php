@@ -1,0 +1,1 @@
+&quot;Conocer tu propia oscuridad es el mejor m&eacute;todo para hacer frente a las tinieblas de otras personas.&quot;<br/>C.G.Jung<br/>http://www.youtube.com/watch?v=ILjUr1JNJUk

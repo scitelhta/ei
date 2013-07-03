@@ -1,0 +1,1 @@
+&quot;No somos un ser que se transforma. Somos un transformar que se es.&quot;<br/>http://www.estudiantesdelinstante.net/porquerielabrisa_libro

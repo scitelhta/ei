@@ -1,0 +1,1 @@
+Hoy domingo en Caracas, nos reuniremos a mediodia en el parque del Este para compartir Abrazos Gratis!<br/>La primera presentaci&oacute;n ac&aacute; ser&aacute; en Sirio Casa del Ser, CC Millenium desde las 3pm.<br/>Ma&ntilde;ana lunes a las 4pm nos vemos en la Sala de lecturas de la Escuela de Historia, Facultad de Humanidades, UCV.<br/>Contamos con la luz de sus corazones.

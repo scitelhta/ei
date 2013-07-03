@@ -1,0 +1,58 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:fb='http://www.facebook.com/2008/fbml' xmlns:og='http://opengraphprotocol.org/schema/'>
+<head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# blog: http://ogp.me/ns/blog#">
+<link rel="shortcut icon" href="./images/ei16.png" />
+<link rel="apple-touch-icon" href="./images/ei256.png"/>
+<link rel="alternate" type="application/rss+xml" href="{{rss}}" />
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<link rel="stylesheet" href="./css/style.css" />
+<link rel="stylesheet" href="http://code.jquery.com/mobile/1.3.1/jquery.mobile-1.3.1.min.css" />
+<script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
+<script src="http://code.jquery.com/mobile/1.3.1/jquery.mobile-1.3.1.min.js"></script>
+<script src="https://github.com/paulirish/infinite-scroll/blob/master/jquery.infinitescroll.min.js"></script>
+
+<script type="text/javascript">
+
+$(document).ready(function(){
+	
+$.mobile.ajaxEnabled=true;	
+  $.mobile.loader.prototype.options.text = "loading";
+  $.mobile.loader.prototype.options.textVisible = false;
+  $.mobile.loader.prototype.options.theme = "a";
+  $.mobile.loader.prototype.options.html = "";
+  $.mobile.pageLoadErrorMessage = 'Esta pagina no existe';
+//$.mobile.fixedToolbars.show(true);
+$.mobile.defaultDialogTransition='slideup';
+$.mobile.defaultPageTransition='flip';
+
+});	
+	
+	
+</script>
+
+
+
+<title>{{title}}</title>
+
+</head>
+<body>
+
+<div data-role="page" id="home">
+<div data-role="header"  data-position="fixed" class="ui-bar ui-bar-b" style="z-index: 8000;height:30px;">
+<a href="holsa" data-role="button" data-mini="true">Button</a>
+</div>
+<div data-role="header">
+{% include 'head.html' %}
+</div>
+<div data-role="content">
+{% include(bodyhtml) %} 
+</div>
+<div data-role="footer" data-position="fixed">
+{% include 'foot.html' %}
+</div>
+</div>
+
+
+
+</body>
+</html>
