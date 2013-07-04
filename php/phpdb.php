@@ -7,10 +7,11 @@ $user = 'edidbz';
 $pass = 'Menso345@';
 $db = 'edidbz';
 
-$host = 'localhost';
+st = 'server.celmedia.info';
 $user = 'root';
-$pass = 'root';
+$pass = 'cerebro';
 $db = 'edidb';
+
 
 function connect() {
 	global $host, $user, $pass, $db;
