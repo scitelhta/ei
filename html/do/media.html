@@ -1,3 +1,7 @@
+{% if media|length == 1 %}
+
+
+{%else%}
 <ul data-role="listview" data-inset="true">
     {% for m in media %}
     <li><a href="media_{{m.id}}">
@@ -7,3 +11,5 @@
     </li>
     {% endfor %}
 </ul>
+
+{%endif%}

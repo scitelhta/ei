@@ -1,8 +1,5 @@
 <?php
 
-
-
-
 require_once (dirname(__FILE__).'/php/phpdb.php');
 
 session_start();
