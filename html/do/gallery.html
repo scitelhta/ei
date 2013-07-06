@@ -1,0 +1,5 @@
+<ul id="Gallery">
+    {% for f in photos %}
+        <li><a href="{{f.img_full}}"><img src="{{f.img_thumb}}" alt="{{f.name}}"></a></li>
+    {% endif %}
+</ul>

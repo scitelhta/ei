@@ -1,10 +1,11 @@
 <?php
 
 
+
+
 require_once (dirname(__FILE__).'/php/phpdb.php');
 
 session_start();
-
 
 
 require_once ('./lib/Twig/Autoloader.php');
@@ -40,6 +41,9 @@ $data["bodyhtml"] = "do/{$do}.html";
 if (@include(dirname(__FILE__)."/php/{$do}.php")) {
 	$data[$do] = do_get_data();	
 }
+
+
+
 if ($do == 'xblog') {
 	if (@include(dirname(__FILE__)."/php/blog.php")) {
 		$data["blog"] = do_get_data();	
@@ -47,6 +51,7 @@ if ($do == 'xblog') {
 	echo $twig->render('do/xblog.html', $data);
 	exit;
 }
+
 
 //print json_encode($data);
 echo $twig->render('main.html', $data);

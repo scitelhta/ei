@@ -1,0 +1,27 @@
+
+
+<div>
+    <table class="tablesorter">
+        <thead>
+        <tr>
+            <th>Evento</th>
+            <th>Fecha Inicio</th>
+            <th>Fecha Fin</th>
+            <th>Nombre</th>
+            <th>Lugar</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for e in events %}
+        <tr>
+            <td><a href='{{e.url}}'><img src='{{e.imagen}}'/></a></td>
+            <td>e.fechai</td>
+            <td>e.fechaf</td>
+            <td>e.nombre</td>
+            <td>e.lugar</td>
+        </tr>
+       {% endfor %}
+        </tbody>
+
+    </table>
+</div>

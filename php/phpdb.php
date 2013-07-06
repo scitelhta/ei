@@ -1,13 +1,14 @@
 <?php
 
 
-
+/*
 $host = 'edidbz.db.11331539.hostedresource.com';
 $user = 'edidbz';
 $pass = 'Menso345@';
 $db = 'edidbz';
+*/
 
-st = 'server.celmedia.info';
+$host = 'server.celmedia.info';
 $user = 'root';
 $pass = 'cerebro';
 $db = 'edidb';
