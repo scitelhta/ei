@@ -1,5 +1,29 @@
+{% if mobile %}
+<style >
+    .ui-icon-custom {
+        background-image: url("images/calendar.png");
+        _background-position: 3px 3px;
+        background-size: 100%;
+    }
+</style>
+<div data-role="collapsible-set" data-theme="c" data-content-theme="d" data-inset="true" data-collapsed-icon="arrow-r" data-expanded-icon="arrow-d">
+    {% for e in events %}
+    <div data-role="collapsible" >
+        <h2>{{e.nombre}}</h2>
+        <ul data-role="listview" data-inset="true">
+            <li  data-icon="custom"><a href="{{e.url}}">
+                <img src="{{e.imagen}}">
+                <h2>{{e.nombre}}</h2>
+                <p>{{e.lugar}}</p>
+               <p>{{e.fechai}}</p>
+                <p>{{e.fechaf}}</p></a>
+            </li>
+        </ul>
+    </div>
+    {% endfor %}
+</div>
 
-
+{%else%}
 <div>
     <table class="tablesorter">
         <thead>
@@ -15,13 +39,14 @@
         {% for e in events %}
         <tr>
             <td><a href='{{e.url}}'><img src='{{e.imagen}}'/></a></td>
-            <td>e.fechai</td>
-            <td>e.fechaf</td>
-            <td>e.nombre</td>
-            <td>e.lugar</td>
+            <td>{{e.fechai}}</td>
+            <td>{{e.fechaf}}</td>
+            <td>{{e.nombre}}</td>
+            <td>{{e.lugar}}</td>
         </tr>
        {% endfor %}
         </tbody>
 
     </table>
 </div>
+{%endif%}

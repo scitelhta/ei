@@ -1,7 +1,7 @@
 <?php
 
 function do_get_data() {
-    return null;
+
 
     $imgb = $_SERVER[HTTP_HOST].dirname($_SERVER[REQUEST_URI])."/images/events/";
 
@@ -9,7 +9,7 @@ function do_get_data() {
                 name nombre, place lugar, url,
                 concat('{$imgb}', guid, '.jpg') imagen
               FROM events
-              WHERE itime>now();";
+              WHERE itime<now() limit 10;";
     $q = query($query);
 
     return $q;

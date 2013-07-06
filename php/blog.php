@@ -14,7 +14,7 @@ function do_get_data() {
 	
 	$a = array();
 	foreach ($r as $rr) {
-		$rr["data"] = file_get_contents(dirname(__FILE__)."/../blogs/".$rr["filename"]);
+		$rr["data"] = @file_get_contents(dirname(__FILE__)."/../blogs/".$rr["filename"]);
 		//$rr["data"] =  dirname(__FILE__)."/../blogs/".$rr["filename"];
 		$a[] = $rr;
 	}

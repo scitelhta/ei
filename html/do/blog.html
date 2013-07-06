@@ -1,18 +1,19 @@
 <script type="text/javascript">
 
 </script>
-<script type='text/javascript' src='php/jqm.infinitescroll.js'></script>
+<script type='text/javascript' src='js/jqm.infinitescroll.js'></script>
 
 {% include ('do/xblog.html') %}
 
 
-   <a id="nextPage" href="?do=xblog">Next Page</a>
+   <a id="nextPage" href="xblog">Next Page</a>
 
 
 <script type="text/javascript">
 function infi() {
 	$('#list').infinitescroll({
 		// required options
+        windowLocationTrigger: 0.95,
 		navElement: '#nextPage',
 		itemsToLoad: 'div.lista'
 	}, function(t){

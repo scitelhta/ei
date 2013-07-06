@@ -1,0 +1,9 @@
+<ul data-role="listview" data-inset="true">
+    {% for m in media %}
+    <li><a href="media_{{m.id}}">
+        <img src="images/media/{{m.imagen}}">
+        <h2>{{m.titulo}}</h2>
+        <p>{{m.descripcion}}</p></a>
+    </li>
+    {% endfor %}
+</ul>
