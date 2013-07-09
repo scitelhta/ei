@@ -1,5 +1,34 @@
-<ul id="Gallery">
-    {% for f in photos %}
-        <li><a href="{{f.img_full}}"><img src="{{f.img_thumb}}" alt="{{f.name}}"></a></li>
-    {% endif %}
-</ul>
+<script>
+	function galeria(i, t) {
+		$(".gallery").addClass("jiden");
+		$("#galeria_"+i).removeClass("jiden");
+		$("#gallery_title").html(t);
+	}
+</script>
+<div data-role="header"  >
+    <div data-role="navbar">
+        <ul>
+            {% for g in gallery|keys %}
+            <li><a href="javascript:galeria({{loop.index0}}, '{{ g }}')"
+                {% if loop.first %}
+                class="ui-btn-active"
+                {% endif %}
+                >{{g}}</a></li>
+            {% endfor %}
+        </ul>
+    </div>
+</div>
+
+<div data-role="collapsible" data-collapsed="false" >
+	{% for g,photos in gallery %}
+		{% if loop.first %}
+		<h2><div  id="gallery_title">{{g}}</div></h2>
+		{% endif %}
+		<ul class="gallery {% if not loop.first %}jiden {% endif %}" id="galeria_{{ loop.index0 }}">
+            {% for f in photos %}
+            <li><a href="{{f.imagen}}">
+                <img src="{{f.thumb}}" alt="{{f.titulo}}"></a></li>
+            {% endfor %}
+        </ul>
+	{% endfor %}
+</div>

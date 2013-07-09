@@ -16,7 +16,7 @@ $db = 'edidb';
 $host = 'localhost';
 $user = 'root';
 $pass = 'root';
-$db = 'ei';
+$db = 'eidb';
 
 
 

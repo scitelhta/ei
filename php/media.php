@@ -7,7 +7,9 @@ function do_get_data()
         $q = " AND idmedia='{$dodo}''";
     }
 
-    $imgb = $_SERVER[HTTP_HOST].dirname($_SERVER[REQUEST_URI])."/images/media/";
+	define("DS","/",true);
+
+	$imgb = $_SERVER[HTTP_HOST].dirname($_SERVER[REQUEST_URI])."/images/media/";
 
     $query = "SELECT idmedia id, title titulo,
         concat('{$imgb}', image) imagen,

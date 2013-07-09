@@ -33,6 +33,7 @@ $data = array('title' => 'Estudiantes del Instante');
 $data["rss"] = "/rss";
 $data["mobile"] = $mobile;
 $data["layout"] = $layout;
+$data["do"] = $do;
 $data["bodyhtml"] = "do/{$do}.html";
 
 if (@include(dirname(__FILE__)."/php/{$do}.php")) {

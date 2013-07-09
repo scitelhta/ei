@@ -1,8 +1,7 @@
 <?php
-
 function do_get_data()
 {
-    $imgb = $_SERVER[HTTP_HOST].dirname($_SERVER[REQUEST_URI])."/images/gallery/";
+	$imgb = "//".$_SERVER["HTTP_HOST"].str_replace('\\', '/', dirname($_SERVER["REQUEST_URI"]))."/images/gallery/";
 
 
     $q = "SELECT g.idgallery gid, g.title galeria, p.image imagen,

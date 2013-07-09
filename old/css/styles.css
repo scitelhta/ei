@@ -1,0 +1,378 @@
+body, html {
+    margin: 0 0 10px;
+    padding: 0;
+}
+
+#tabla td,#tabla th {
+	border:0px;
+}
+	
+#body_bg {
+background-color: rgb(217, 218, 253);
+    wbackground: url("../images/bg_top.gif") repeat-x scroll left top #FFFFFF;
+    text-align: center;
+}
+
+#header {
+background-color: rgb(13, 3, 133);
+width: 100%;
+height:40px;
+position: fixed; 
+top: 0px; 
+z-index: 100000;
+} 
+
+#body {
+background-color: #ffffff;
+_max-width:960px;
+height:100%;
+padding:30px;
+}
+
+#body1 {
+position: absolute;
+top: 175px;
+left: 0px;
+}
+
+.logo {
+    background-attachment: scroll;
+    background-clip: border-box;
+    background-color: #FFFFFF;
+    background-image: url("../images/header.jpg");
+    background-origin: padding-box;
+    background-position: left center;
+    background-repeat: no-repeat;
+    background-size: 100% auto;
+    height: 180px;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+	left: 0px;
+	position: relative; 
+	top: 0px; 
+	z-index: 1800;
+	_cursor:s-resize;
+	text-align: center;
+}
+
+
+
+
+#body1.bodyk{
+	top: 70px;
+}
+	
+.logo.logok {
+	height:30px;
+}
+
+
+
+#fbd{
+
+	
+    background-image: url("../images/fbd.png");
+    background-repeat: no-repeat;
+    height: 21px;
+    margin: 0;
+    padding: 0;
+    width: 28px;
+}
+
+
+#fbdt {
+
+    _background-image: url("../images/fbdt.png");
+    _background-repeat: repeat;
+    height: 21px;
+    margin: 3;
+    padding: 0;
+    width: auto;
+	max-width: 350px;
+	_position: absolute;
+	_right: 0px;
+	_top: 5px;
+}
+
+
+#ggd{
+
+	
+    background-image: url("../images/ggd.png");
+    background-repeat: no-repeat;
+    height: 21px;
+    margin: 0;
+    padding: 0;
+    width: 28px;
+}
+
+
+#ggdt {
+    _background-image: url("../images/fbdt.png");
+    _background-repeat: repeat;
+    background-color: #FFFFFF;
+    height: 21px;
+    margin: 3;
+    padding: 0;
+    width: auto;
+	max-width: 350px;
+	position: absolute;
+	right: 0px;
+	top: 5px;
+}
+
+div.artitulo {
+	font-size:160%;
+
+}
+
+div.artitulo a:link {
+text-decoration: none;
+}
+
+/* css for timepicker */
+.ui-timepicker-div .ui-widget-header { margin-bottom: 8px; }
+.ui-timepicker-div dl { text-align: left; }
+.ui-timepicker-div dl dt { height: 25px; margin-bottom: -25px; }
+.ui-timepicker-div dl dd { margin: 0 10px 10px 65px; }
+.ui-timepicker-div td { font-size: 90%; }
+.ui-tpicker-grid-label { background: none; border: none; margin: 0; padding: 0; }
+
+.botonb {
+    background-color: #E6EEEE;
+    border: 1px solid #FFFFFF;
+    font-size: 8pt;
+    padding: 4px;
+	cursor: pointer;
+}
+.boton {
+    background-color: #E6EEEE;
+    border: 1px solid #FFFFFF;
+    font-size: 8pt;
+    padding: 4px;
+	cursor: pointer;
+}
+
+
+
+div.article_tools {
+	position: relative;
+	float: top;
+	_max-width: 600px;
+	height: 50px;
+	width:100%;
+	_margin: auto;
+}
+
+div.tooltip {
+	width:40px;
+	height:30px;
+}
+
+div.tooltip_like {
+	height: 30px;
+	background-size: 100%;
+	background-image:url(../images/like.png);
+	float: left;
+	margin: 1px;
+}
+
+div.tooltip_dislike {
+	height: 30px;
+	background-size: 100%;
+	background-image:url(../images/dislike.png);
+	float: left;
+	margin: 1px;
+}
+
+div.tooltip_comment {
+	height: 30px;
+	background-size: 100%;
+	background-image:url(../images/comment.png);
+	float: left;
+	z-index: 800;
+	margin: 1px;	
+}
+
+div.tooltip_commentext {
+	position:relative;
+	top: 2px;
+}
+
+div.tooltip_outs {
+	position: relative;
+	float: left;	
+	top: 5px;
+	margin: 30px;
+}
+
+div.tooltip_fb {
+	_position:absolute;
+	_left:170px;
+	float:left;
+	_z-index:1100;
+}
+
+div.tooltip_gplus {
+	_position:absolute;
+	_left:100px;
+	float:left;
+	_z-index:1000;
+}
+
+div.tooltip_twitter {
+	_position:absolute;
+	_left:2px;
+	_z-index:900;
+	width:100px;
+	float:left;
+}
+
+.logolike {
+	width:30px;
+	height:30px;
+	cursor:pointer;
+	background: url("../images/likeup.png");	
+	left:0px;
+	top:150px;
+	position:absolute;
+}
+
+.likedown {
+	background: url("../images/likedown.png") !important;
+	top: 0px !important;
+}
+
+.fb_iframe_widget {
+	width:100%;
+}
+
+#columns2 {
+	width:100%;
+	float:top;
+	padding:5px;
+
+}
+
+
+
+#body2 {
+	_width:300px;
+	_float:right;
+	padding:10px;
+	_margin-left:200px;
+}
+
+
+
+.mmenu {
+  list-style: none outside none;
+}
+
+.mmenu li {
+	margin-top:1px;
+}
+
+.mmenu li a {
+	background: url("../images/list-menu.png") no-repeat scroll 7px 13px #F6F6F6;
+	_background: url("../images/list-menu.png") no-repeat scroll 7px -16px #FFFFFF;
+    border: 1px solid #F6F6F6;
+    border-radius: 2px 2px 2px 2px;
+    color: inherit;
+    display: block;
+    padding: 3px 10px 3px 15px;
+	text-decoration: none;
+	transition: color 0.15s ease-in-out 0s;
+	font-family: arial,sans-serif;
+	font-size: 14px;
+}
+
+.mmenu li ul li {
+  list-style: none outside none;
+  margin-left:20px;
+}
+
+.mmenu li a:hover {
+	background-color: #FFFFFF;
+    background-position: 7px -16px;
+    color: #0095FE;
+}
+
+.mmenu li ul li a:hover {
+	background-color: #FFFFFF;
+    background-position: 3px -49px;
+    color: #0095FE;
+}
+
+.mmenu li ul li a {
+
+	_background-color: #FFFFFF;
+    background-position: 3px -73px;
+    _color: #0095FE;
+}
+
+.rmenu {
+	_position:absolute;
+	position:relative;
+	_left:0;
+	bottom:0;
+	_align:left;
+	_width:70px;
+	_height:70px;
+	cursor:pointer;
+	_background-size: 100% auto !important;
+}
+
+
+
+.module {
+	text-align: left;
+	margin-top:30px;
+}
+
+.module h3.title {
+    background: url("../images/h3-title.png") repeat scroll left top #174577;
+    border-radius: 3px 3px 3px 3px;
+    color: #FFFFFF;
+    font-family: 'Open Sans',serif;
+    font-size: 18px;
+    font-weight: normal;
+    line-height: 35px;
+    margin: 0;
+    padding: 0 10px;
+}
+
+.modulec {
+   background: none repeat scroll 0 0 #F6F6F6;
+    padding: 10px 10px 0;
+    border: 1px solid #CCCCCC;
+    border-radius: 3px 3px 3px 3px;		
+}
+
+
+a.readmore {
+    -moz-border-bottom-colors: none;
+    -moz-border-left-colors: none;
+    -moz-border-right-colors: none;
+    -moz-border-top-colors: none;
+    background: url("../images/readmore.png") repeat-x scroll left bottom transparent;
+    border-color: #DFDFDF #DFDFDF #C9C9C9;
+    border-image: none;
+    border-radius: 4px 4px 4px 4px;
+    border-style: solid;
+    border-width: 1px;
+    box-shadow: 1px 1px 2px #DDDDDD;
+    display: inline-block;
+    padding: 3px 5px 3px 12px;
+}
+a.readmore:hover {
+    background-color: #195392;
+    border-color: #174577;
+    color: #FFFFFF;
+}
+a.readmore:focus {
+    background-color: #195392;
+    border-color: #174577;
+    box-shadow: 0 1px 1px #E7E7E7, 1px 2px 3px #333333 inset;
+}

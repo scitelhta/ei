@@ -2,6 +2,7 @@
 
 function do_get_data() {
 
+	define("DS","/",true);
 
     $imgb = $_SERVER[HTTP_HOST].dirname($_SERVER[REQUEST_URI])."/images/events/";
 

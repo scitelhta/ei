@@ -1,0 +1,1 @@
+Me gusta entenderlo todo antes de llegar a creerme algo.<br/>Me gusta mirarlo todo antes de decir que veo algo.<br/>Me gusta estar seguro de todo antes de afirmar algo.<br/>Me gusta saber que nunca he logrado entender, mirar o estar seguro de nada.
