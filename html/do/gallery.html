@@ -4,6 +4,29 @@
 		$("#galeria_"+i).removeClass("jiden");
 		$("#gallery_title").html(t);
 	}
+
+	$(document).on('pagebeforeshow', '#home', function(){
+		var myPhotoSwipe = $("#galeria_0 li a").photoSwipe({
+//			getToolbar: function(){
+//				return '<div class="ps-toolbar-close" style="padding-top: 12px;">Back</div><div class="ps-toolbar-play" style="padding-top: 12px;">Play</div><div class="ps-toolbar-previous" style="padding-top: 12px;">Previous</div><div class="ps-toolbar-next" style="padding-top: 12px;">Next</div><div class="ps-toolbar-close second-close" style="padding-top: 12px;">View All</div>';
+//			},
+			jQueryMobile: true,
+			loop: true,
+			enableMouseWheel: true,
+			enableKeyboard: false
+		});
+
+		myPhotoSwipe.addEventHandler(window.Code.PhotoSwipe.EventTypes.onShow, function(e) {
+			$(document).off('click', '.second-close').on('click', '.second-close', function(){
+				e.target.hide();
+			});
+		});
+
+
+		//<div class="ps-toolbar-close" style="padding-top: 12px;">View All</div>
+		//myPhotoSwipe.show(1);
+	});
+
 </script>
 <div data-role="header"  >
     <div data-role="navbar">
@@ -19,7 +42,7 @@
     </div>
 </div>
 
-<div data-role="collapsible" data-collapsed="false" >
+{#<div data-role="collapsible" data-collapsed="false" >#}
 	{% for g,photos in gallery %}
 		{% if loop.first %}
 		<h2><div  id="gallery_title">{{g}}</div></h2>
@@ -31,4 +54,3 @@
             {% endfor %}
         </ul>
 	{% endfor %}
-</div>
