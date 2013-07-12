@@ -12,19 +12,19 @@ $user = 'root';
 $pass = 'cerebro';
 $db = 'edidb';
 */
-/*
 $host = 'server.celmedia.info';
 $user = 'root';
 $pass = 'cerebro';
 $db = 'eidb';
 
-*/
+
+/*
 
 $host = 'localhost';
 $user = 'root';
 $pass = 'root';
 $db = 'eidb';
-
+*/
 
 function connect() {
 	global $host, $user, $pass, $db;

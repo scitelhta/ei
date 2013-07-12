@@ -1,15 +1,56 @@
-{% if media|length == 1 %}
 
+<script>
+	function album(id, name, author) {
+		$(".album").addClass("jiden");
+		$("#album_"+id).removeClass("jiden");
+		$("#album_title").html(name);
+		$("#album_author").html(name);
+		$("a[name='abutton']").buttonMarkup({ theme: "a" });
+				//attr("data-theme", "a");
+		$("#abutton_"+id).buttonMarkup({ theme: "b" });
+				//attr("data-theme", "b");
+	}
+</script>
 
-{%else%}
-<ul data-role="listview" data-inset="true">
-    {% for m in media %}
-    <li><a href="media_{{m.id}}">
-        <img src="images/media/{{m.imagen}}">
-        <h2>{{m.titulo}}</h2>
-        <p>{{m.descripcion}}</p></a>
-    </li>
-    {% endfor %}
-</ul>
+<div data-role="header"  >
+	<div data-role="navbar">
+		<ul>
+			{% for a in media %}
+				<li><a href="javascript:album('{{ a.id }}', '{{ a.name }}', '{{ a.author }}')"
+				       id="abutton_{{ a.id }}"
+							{% if loop.first %}
+								data-theme="b"
+							{% else %}
+								data-theme="a"
+							{% endif %}
+					       name="abutton"
+							>{{a.title}}<p>{{ a.author }}</p></a></li>
+			{% endfor %}
+		</ul>
+	</div>
+</div>
 
-{%endif%}
+{#<div data-role="collapsible" data-collapsed="false" >#}
+{% for a in media %}
+	{% if loop.first %}
+		<h2><div  id="album_title">{{a.title}}</div></h2>
+		<h3><div id="album_author">{{ a.author }}</div></h3>
+		<audio controls="true" preload="none"id="iaudio">
+{#			<source  type="audio/mpeg" src="http://tesla.plunder.com/x/$OoqDlWjtO5c6qeQJVvsaVef_4bUumqQk/ZONI1B2OPX/Oracion%20(2)_01.mp3"/>
+			<source  type="audio/ogg" src="http://ei.com/oracion.ogg" />#}
+			Your browser does not support HTML5 audio.
+		</audio>
+
+	{% endif %}
+	<ul class="album {% if not loop.first %}jiden {% endif %}" id="album_{{ a.id }}" data-role="listview"  data-inset="true">
+		{% for m in a.media %}
+			<li data-icon="false">
+					<img src="{{m.image}}">
+					<h2>{{m.title}}</h2>
+					<p>{{m.description}}
+					</p>
+			</li>
+		{% endfor %}
+	</ul>
+{% endfor %}
+

@@ -50,6 +50,7 @@ if ($do == 'xblog') {
 	exit;
 }
 
+header('Content-type: text/html; charset=UTF-8');
 
 //print json_encode($data);
 echo $twig->render('main.html', $data);

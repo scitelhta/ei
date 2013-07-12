@@ -1,56 +1,122 @@
+<style>
+	.no-ui-grid-a {
+		height:100%;
+		width:100%;
+	}
+	.no-ui-block-a {
+		height:100%;
+		_padding-top:5%;
+		float:left;
+		width:40%;
+	}
+	.no-ui-block-b{
+		height:100%;
+		padding-left:5%;
+		padding-right:5%;
+		width:50%;
+		float:left;
+	}
 
+@media screen and (max-width: 600px){
+	.no-ui-block-a {
+		width:100%;
+	}
+	.no-ui-block-b{
+		width:100%;
+		padding-left:0;
+		padding-right:0;
+	}
+}
+
+</style>
 <div id="lib_ebrisa">
 
-    <div id="portada_ebrisa">
-        <img src="./images/portada01.jpg" style="width:100%;height:100%;max-width:300px"/>
 
-    </div>
-    <div id="desc_ebrisa">
+	<div class="no-ui-grid-a">
+		<div class="no-ui-block-a" style="">
+			<img src="./images/portada03.jpg" style="width:100%;height:auto;">
+		</div>
+		<div class="no-ui-block-b" style="">
 
-        <h1>Por qu&eacute; r&iacute;e la brisa</h1>
-        <h4>Autor: Sergio Vel&aacute;squez Zeballos</h4>
-        <hr style="width:50%"/>
-        <p>Junto a la brisa que yo mismo hac&iacute;a, aprend&iacute;a que yo mismo creaba la risa de la  brisa.
-            Aprend&iacute;a el porqu&eacute; de ella.	</p>
-        <p>En este libro intento comunicar la tonada que me inspira.
-            En estas l&iacute;neas intento transcribir los colores que olfateo cuando cierro los ojos y escucho. </p>
+			<h1>Por qu&eacute; r&iacute;e la brisa</h1>
+			<h4>Autor: Sergio Vel&aacute;squez Zeballos</h4>
+			<hr style="width:100%"/>
+			<p>Junto a la brisa que yo mismo hac&iacute;a, aprend&iacute;a que yo mismo creaba la risa de la  brisa.
+				Aprend&iacute;a el porqu&eacute; de ella.	</p>
+			<p>En este libro intento comunicar la tonada que me inspira.
+				En estas l&iacute;neas intento transcribir los colores que olfateo cuando cierro los ojos y escucho. </p>
+{#
+			<div class="ui-grid-a" style="font-size:15%;margin-left:20%;">
+				<div class="ui-block-a" style="font-weight:bold;width:30%;">
+					<div class="ui-bar ui-bar-b" style="font-size:12px;">
+						<p>N. p&aacute;ginas:</p>
+						<p>Fecha publicaci&oacute;n:</p>
+						<p>Idioma:</p>
+						<p>ISBN-13:</p>
+						<p>Dimensiones:</p>
+						<p>Impresi&oacute;n:</p>
+					</div>
+				</div>
+				<div class="ui-block-b" style=";width:30%;font-weight:normal;;">
+					<div class="ui-bar ui-bar-b"  style="font-size:12px;">
+						<p>200</p>
+						<p>Agosto, 2010</p>
+						<p>Espa&ntilde;ol</p>
+						<p>978-980-12-5836-0</p>
+						<p>11 x 17,8 x 1,2 cm</p>
+						<p>Editorial Torino</p>
+					</div>
+				</div>
+			</div>
+#}
+		</div>
+	</div>
 
 
-        <table border='0'>
-            <tr>
-                <td style="font-weight:bold">N. p&aacute;ginas:</td>
-                <td>200</td>
-            </tr>
-            <tr>
-                <td style="font-weight:bold">Fecha publicaci&oacute;n:</td>
-                <td>Agosto, 2010</td>
-            </tr>
-            <tr>
-                <td style="font-weight:bold">Idioma:</td>
-                <td>Espa&ntilde;ol</td>
-            </tr>
-            <tr>
-                <td style="font-weight:bold">ISBN-13:</td>
-                <td>978-980-12-5836-0</td>
-            </tr>
-            <tr>
-                <td style="font-weight:bold">Dimensiones:</td>
-                <td>11 x 17,8 x 1,2 cm</td>
-            </tr>
-            <tr>
-                <td style="font-weight:bold">Impresi&oacute;n:</td>
-                <td>Editorial Torino</td>
-            </tr>
-        </table>
 
-    </div>
 
-    <div >
-        <h3 >
-            <div style="text-decoration:none !important;color:black;" >Ventas del libro en Venezuela</a>
-        </h3>
-    </div>
+    <div data-role="content" style="margin-top:15px;clear:both;">
+    <div class="content-primary">
+	    <ul data-role="listview">
 
+		    {% for country, ps in porquerielabrisa %}
+
+		    <li data-role="list-divider">Ventas del libro en {{ country }}</li>
+
+
+		    {% for p in ps %}
+			    <li data-icon="false"   >
+				    <a href="{{ p.url }}">
+					    <img src="{{ p.image }}" />
+						<h3>{{ p.name }}</h3>
+					    <p>{{ p.place }}</p>
+					    <span class="ui-li-count">{{ p.phone }}</span>
+					    </a></li>
+{#
+			    <tr>
+				    <td style="font-weight:bold">
+					    {{ p.place }}</td><td>
+					    <a href="{{ p.url }}">
+						    {{ p.name }}</a></td>
+				    <td >{{ p.phone }}</td>
+			    </tr>#}
+		    {% endfor %}
+
+		    {% endfor %}
+
+	    </ul>
+    </div><!--/content-primary -->
+	</div>
+
+{#
+    {% for country, ps in porquerielabrisa %}
+
+
+	    <div >
+		    <h3 >
+			    <div style="text-decoration:none !important;color:black;" >Ventas del libro en {{ country }}</a>
+		    </h3>
+	    </div>
     <table border='0' id="tpresentacion" class="tablesorter">
         <thead>
         <tr>
@@ -61,93 +127,16 @@
         </thead>
         <tbody>
 
-
-
-
+		{% for p in ps %}
 
         <tr>
             <td style="font-weight:bold">
-                Caracas/San Antonio (Yag&eacute; Tierrasana)</td><td>
-            <a href="http://www.facebook.com/gabriela.destefano.7">
-                Gabriela D'Estefano</a></td>
-            <td >0416-528.28.74 </td>
+                {{ p.place }}</td><td>
+            <a href="{{ p.url }}">
+                {{ p.name }}</a></td>
+            <td >{{ p.phone }}</td>
         </tr>
-
-        <tr>
-            <td style="font-weight:bold">
-                Maracay-El Lim&oacute;n</td><td>
-            <a href="http://www.facebook.com/gladys.zeballos">
-                Gladys Victoria Zeballos</a></td>
-            <td >0412-594.91.99 </td>
-        </tr>
-
-        <tr>
-            <td style="font-weight:bold">
-                Maracay-El Lim&oacute;n</td><td>
-            <a href="http://www.facebook.com/groups/131413522271/">
-                GFU "El Vegetariano"</a></td>
-            <td >0243-283.18.39	 </td>
-        </tr>
-
-
-        <tr>
-            <td style="font-weight:bold">
-                Maracay-Las Am&eacute;ricas</td><td>
-            <a href="http://www.facebook.com/Saraswati.book.store">
-                Librer&iacute;a Saraswati </a></td>
-            <td >0243-232.20.14 </td>
-        </tr>
-
-        <tr>
-            <td style="font-weight:bold">
-                Valencia (Yag&eacute; Las Trincheras)</td><td>
-            <a href="http://www.facebook.com/adrenalinexcess">
-                Andr&eacute;s Mart&iacute;nez </a></td>
-            <td >0426-443.88.55 </td>
-        </tr>
-
-        <tr>
-            <td style="font-weight:bold">
-                Valencia (Yag&eacute; La Cumaca)</td><td>
-            <a href="http://www.facebook.com/barbara.ramirez.9275">
-                B&aacute;rbara Ram&iacute;rez </a></td>
-            <td >0414-420.04.24  </td>
-        </tr>
-
-        <tr>
-            <td style="font-weight:bold">
-                Barquisimeto  (Yag&eacute; Las Teresitas)</td><td>
-            <a href="http://www.facebook.com/alejandro.n.pina">
-                Alejandro &Ntilde;as Pi&ntilde;a </a></td>
-            <td >0412- 174.67.11 </td>
-        </tr>
-
-        <tr>
-            <td style="font-weight:bold">
-                Cabudare (Yag&eacute; Los Cafetaleros)</td><td>
-            <a href="http://www.facebook.com/giovanna.salas2">
-                Giovanna Salas</a></td>
-            <td >0424-576.78.61  </td>
-        </tr>
-
-
-        <tr>
-            <td style="font-weight:bold">
-                M&eacute;rida-La Azulita</td><td>
-            <a href="http://www.facebook.com/david.marincabrera">
-                David Mar&iacute;n Cabrera</a></td>
-            <td >0416-041.71.85  </td>
-        </tr>
-
-
-
-        <tr>
-            <td style="font-weight:bold">
-                Zulia-Ciudad Ojeda</td><td>
-            <a href="http://www.facebook.com/ayahuascazabalareyes">
-                Wen Zabala</a></td>
-            <td >0416-069.83.36  </td>
-        </tr>
+		{% endfor %}
 
         </tbody>
     </table>
@@ -155,64 +144,8 @@
 
     <br/>
     <br/>
+	{% endfor %}
 
-
-
-    <div >
-        <h3 >
-            <div style="text-decoration:none !important;color:black;" >Ventas del libro en Ecuador</a>
-        </h3>
-    </div>
-
-    <table border='0' id="tpresentacion2" class="tablesorter">
-        <thead>
-        <tr>
-            <th>Ciudad</th>
-            <th>Contacto</th>
-            <th>Tel&eacute;fono</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr>
-            <td style="font-weight:bold">
-                Quito (Solanda)</td><td>
-            <a href="http://www.facebook.com/scitelhta?ref=tn_tnmn">
-                Sergio Vel&aacute;squez Zeballos</a></td>
-            <td >0979-208.206</td>
-        </tr>
-
-        </tbody>
-    </table>
-    <br/>
-    <br/>
-
-
-    <div >
-        <h3 >
-            <div style="text-decoration:none !important;color:black;" >Ventas del libro en Colombia</a>
-        </h3>
-    </div>
-
-    <table border='0' id="tpresentacion3" class="tablesorter">
-        <thead>
-        <tr>
-            <th>Ciudad</th>
-            <th>Contacto</th>
-            <th>Tel&eacute;fono</th>
-        </tr>
-        </thead>
-        <tbody>
-
-
-        <tr>
-            <td style="font-weight:bold">
-                Cali</td><td>
-            <a href="mailto:andresyage@hotmail.com">
-                Andr&eacute;s C&oacute;rdoba</a></td>
-            <td >316-341.6181</td>
-        </tr>
-
-        </tbody>
-    </table>
+#}
 
 </div>
