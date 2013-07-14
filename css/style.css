@@ -121,3 +121,45 @@ left: 0px;
 	position:absolute !important;
 	display:none !important;
 }
+
+.innertube {
+	margin-right:10px;
+}
+.ui-icon-menu {
+	background-image: url("../images/menu.png") !important;
+}
+.ui-icon-sol {
+	background-image: url("../images/sol.png") !important;
+}
+.ui-icon-libro {
+	background-image: url("../images/libro.png") !important;
+}
+.ui-icon-galeria {
+	background-image: url("../images/galeria.png") !important;
+}
+.innertube .ui-btn-inner {
+	white-space: normal !important;
+	font-size: 14px !important;
+}
+.innertube .ui-li .ui-btn-text a.ui-link-inherit {
+	white-space: normal !important;
+	font-size: 11px !important;
+}
+
+
+.imgthb
+{
+	float:left;
+	border: solid 1px #ffffff;
+	margin: 1%;
+	width:40%;
+	height:auto;
+	padding:1%;
+	border-width: 1px!important;
+}
+
+.imgthb:hover
+{
+	cursor:pointer;
+	border: solid 1px #0000d6;
+}

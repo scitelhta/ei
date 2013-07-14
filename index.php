@@ -35,12 +35,18 @@ $data["mobile"] = $mobile;
 $data["layout"] = $layout;
 $data["do"] = $do;
 $data["bodyhtml"] = "do/{$do}.html";
+$data["lefthtml"] = "left.html";
+$data["righthtml"] = "right.html";
 
 if (@include(dirname(__FILE__)."/php/{$do}.php")) {
 	$data[$do] = do_get_data();	
 }
-
-
+if (@include(dirname(__FILE__)."/php/minigal.php")) {
+	$data["minigal"] = minigal();
+}
+if (@include(dirname(__FILE__)."/php/miniblog.php")) {
+	$data["miniblog"] = miniblog();
+}
 
 if ($do == 'xblog') {
 	if (@include(dirname(__FILE__)."/php/blog.php")) {

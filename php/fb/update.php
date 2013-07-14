@@ -1,9 +1,6 @@
 <?php
 
-require_once(dirname(__FILE__)."/phpmysql.php");
-require_once(dirname(__FILE__)."/phpapi.php");
-require_once(dirname(__FILE__)."/phpblog.php");
-require_once(dirname(__FILE__)."/auth/auth.php");
+require_once(dirname(__FILE__)."/../phpdb.php");
 
 
 
@@ -465,10 +462,10 @@ function fbupdate($key)
 
 
 }
-$key="";
-if ($_REQUEST["key"]) $key=$_REQUEST["key"];
 
-db_conectar();
-fbupdate($key);
+if (isset($_REQUEST["key"])) {
+	fbupdate($_REQUEST["key"]);
+}
+
 ?>
 

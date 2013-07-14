@@ -9,20 +9,21 @@
 <link rel="stylesheet" href="./css/style.css" />
 <link rel="stylesheet" href="./css/jquery.mobile-1.3.1.min.css" />
 
-	<script src="http://www.photoswipe.com/latest/lib/klass.min.js"></script>
+<script src="http://www.photoswipe.com/latest/lib/klass.min.js"></script>
 
-	<script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
+<script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
 <script src="http://code.jquery.com/mobile/1.3.1/jquery.mobile-1.3.1.min.js"></script>
 <link rel="stylesheet" type="text/css" href="http://cdn.ucb.org.br/Scripts/tablesorter/blue/style.css" />
 
-	<link rel="stylesheet" href="http://www.photoswipe.com/latest/photoswipe.css" />
-	<script src="http://www.photoswipe.com/latest/code.photoswipe.jquery-3.0.4.min.js"></script>
+<link rel="stylesheet" href="http://www.photoswipe.com/latest/photoswipe.css" />
+<script src="http://www.photoswipe.com/latest/code.photoswipe.jquery-3.0.4.min.js"></script>
 
-	{%if not mobile %}
+{%if not mobile %}
 <script type="text/javascript" src="http://cdn.ucb.org.br/Scripts/tablesorter/jquery.tablesorter.min.js"></script>
 {% endif %}
-
-
+{% if mobile==0 %}
+{% set panels=1 %}
+{% endif %}
 <script type="text/javascript">
 
 $(document).ready(function(){
@@ -43,7 +44,54 @@ $(document).ready(function(){
 	
 	
 </script>
+<style>
+	{% if panels %}
+	@media screen and (max-width: 800px){
+		.jleft {
+			position:absolute !important;
+			display:none !important;
+			width:0px !important;
+		}
+		.jright {
+			position:absolute !important;
+			display:none !important;
+			width:0px !important;
+		}
+	    .jcenter {
+		    width:100% !important;
+	    }
 
+	}
+
+	@media screen and (max-width: 1000px) and (min-width: 800px){
+		.jleft {
+			width:15% !important;
+		}
+		.jright {
+			position:absolute !important;
+			display:none !important;
+			width:0px !important;
+		}
+		.jcenter {
+			width:85% !important;
+		}
+
+	}
+
+	@media screen and (min-width: 1000px){
+		.jleft {
+			width:15% !important;
+		}
+		.jright {
+			width:15% !important;
+		}
+		.jcenter {
+			width:70% !important;
+		}
+
+	}
+	{% endif %}
+</style>
 
 
 <title>{{title}}</title>
@@ -59,7 +107,21 @@ $(document).ready(function(){
 {% include 'head.html' %}
 </div>
 <div data-role="content">
-{% include(bodyhtml) %} 
+{% if panels %}
+	<div class="ui-grid-b">
+		<div class="ui-block-a jleft">
+			{% include(lefthtml) %}
+		</div>
+		<div class="ui-block-b jcenter">
+			{% include(bodyhtml) %}
+		</div>
+		<div class="ui-block-c jright">
+			{% include(righthtml) %}
+		</div>
+	</div>
+{% else %}
+{% include(bodyhtml) %}
+{% endif %}
 </div>
 <div data-role="footer" data-position="fixed">
 {% include 'foot.html' %}

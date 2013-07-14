@@ -1,0 +1,26 @@
+
+<div class="innertube">
+	<div data-role="collapsible" data-theme="b" data-content-theme="d" data-collapsed="false" data-expanded-icon="menu">
+
+		<h3>Menú</h3>
+		<ul data-role="listview">
+			<li><a href="about">Inicio</a></li>
+			<li><a href="events">Próximos Eventos</a></li>
+			<li><a href="porquerielabrisa">Por qué ríe la brisa</a></li>
+			<li><a href="media">Música y Videos</a></li>
+			<li><a href="blog">Pensamientos</a></li>
+		</ul>
+	</div>
+	<div data-role="collapsible" data-theme="b" data-content-theme="d" data-collapsed="false" data-expanded-icon="sol">
+
+		<h3>Pensamientos</h3>
+		<ul data-role="listview" style="font-size:10px;">
+			{% for p in miniblog %}
+				<li><a href="blog_{{ p.id }}">{{ p.title }}</a></li>
+			{% endfor %}
+		</ul>
+	</div>
+</div>
+
+
+

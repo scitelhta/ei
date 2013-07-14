@@ -9,7 +9,7 @@ function do_get_data() {
 		$q = " WHERE id={$dodo}";
 	}
 
-	$query = "SELECT unix_timestamp(created) t, created, id, title, filename from blog {$q} order by created limit 10";
+	$query = "SELECT unix_timestamp(created) t, created, id, title, filename from edidb.blog {$q} order by created limit 10";
 	$r = query($query);
 	
 	$a = array();
