@@ -9,7 +9,7 @@ function do_get_data()
 
 	define("DS","/",true);
 
-	$imgb = $_SERVER[HTTP_HOST].dirname($_SERVER[REQUEST_URI])."/images/media/";
+	$imgb = $_SERVER["HTTP_HOST"].dirname($_SERVER["REQUEST_URI"])."/images/media/";
 
 	query("SET NAMES 'utf8' COLLATE 'utf8_general_ci';");
 

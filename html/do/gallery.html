@@ -6,21 +6,23 @@
 	}
 
 	$(document).on('pagebeforeshow', '#home', function(){
-		var myPhotoSwipe = $("#galeria_0 li a").photoSwipe({
-//			getToolbar: function(){
-//				return '<div class="ps-toolbar-close" style="padding-top: 12px;">Back</div><div class="ps-toolbar-play" style="padding-top: 12px;">Play</div><div class="ps-toolbar-previous" style="padding-top: 12px;">Previous</div><div class="ps-toolbar-next" style="padding-top: 12px;">Next</div><div class="ps-toolbar-close second-close" style="padding-top: 12px;">View All</div>';
-//			},
+		var v = {
 			jQueryMobile: true,
 			loop: true,
 			enableMouseWheel: true,
 			enableKeyboard: false
-		});
+		};
 
-		myPhotoSwipe.addEventHandler(window.Code.PhotoSwipe.EventTypes.onShow, function(e) {
+		f = function(e) {
 			$(document).off('click', '.second-close').on('click', '.second-close', function(){
 				e.target.hide();
 			});
-		});
+		};
+		{% for g in gallery|keys %}
+			var myPhotoSwipe_{{ loop.index0 }} = $("#galeria_{{ loop.index0 }} li a").photoSwipe(v);
+			myPhotoSwipe_{{ loop.index0 }}.addEventHandler(window.Code.PhotoSwipe.EventTypes.onShow, f);
+		{% endfor %}
+
 
 
 		//<div class="ps-toolbar-close" style="padding-top: 12px;">View All</div>

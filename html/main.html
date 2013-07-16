@@ -101,7 +101,17 @@ $(document).ready(function(){
 
 <div data-role="page" id="home">
 <div data-role="header"  data-position="fixed" class="ui-bar ui-bar-b" style="z-index: 8000;height:30px;">
-<a href="holsa" data-role="button" data-mini="true">Button</a>
+	<div class="ui-btn-left" data-role="controlgroup" data-type="horizontal">
+		<a href="about" data-role="button" data-mini="true"><img src="images/inicio.png" height="18" width="18" ></a>
+
+		<a href="events" data-role="button" data-mini="true"><img src="images/events.png" height="18" width="18" ></a>
+		<a href="media" data-role="button" data-mini="true"><img src="images/musica.png" height="18" width="18" ></a>
+		<a href="gallery" data-role="button" data-mini="true"><img src="images/galeria.png" height="18" width="18" ></a>
+
+		<a href="blog" data-role="button" data-mini="true"><img src="images/sol.png" height="18" width="18" ></a>
+		<a href="porquerielabrisa" data-role="button" data-mini="true"><img src="images/libro.png" height="18" width="18" ></a>
+	</div>
+	<h1>Estudiantes del Instante</h1>
 </div>
 <div data-role="header">
 {% include 'head.html' %}
@@ -112,7 +122,7 @@ $(document).ready(function(){
 		<div class="ui-block-a jleft">
 			{% include(lefthtml) %}
 		</div>
-		<div class="ui-block-b jcenter">
+		<div class="ui-block-b jcenter" style="padding:4px;">
 			{% include(bodyhtml) %}
 		</div>
 		<div class="ui-block-c jright">

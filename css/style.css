@@ -163,3 +163,10 @@ left: 0px;
 	cursor:pointer;
 	border: solid 1px #0000d6;
 }
+
+@media (max-width:500px) {
+#lib_ebrisa .ui-li-has-count .ui-li-count
+{
+	top:90% !important;
+}
+}
