@@ -1,22 +1,24 @@
 <?php
 
 
-/*
+
 $host = 'edidbz.db.11331539.hostedresource.com';
 $user = 'edidbz';
 $pass = 'Menso345@';
 $db = 'edidbz';
 
+/*
 $host = 'server.celmedia.info';
 $user = 'root';
 $pass = 'cerebro';
 $db = 'edidb';
 */
+/*
 $host = 'server.celmedia.info';
 $user = 'root';
 $pass = 'cerebro';
 $db = 'eidb';
-
+*/
 
 /*
 
@@ -24,22 +26,24 @@ $host = 'localhost';
 $user = 'root';
 $pass = 'root';
 $db = 'eidb';
-*/
+//*/
 
 function connect() {
 	global $host, $user, $pass, $db;
 
-	$link = mysqli_connect($host, $user, $pass, $db );
+	$link = mysql_connect($host, $user, $pass );
+	mysql_select_db($db, $link);
 	if (!$link) { die('Could not connect: ' . mysql_error()); }
 	return $link;
 }
 
 function query($query) {
 	$link = connect();
-	$request = mysqli_query($link, $query);
+	print mysql_error()."<br>";
+	$request = mysql_query($query, $link);
 	if (is_bool($request)) {
 		if ($request) 
-			return mysqli_insert_id($link);
+			return mysql_insert_id($link);
 		return $request;
 	}
 	$array = array();
@@ -47,8 +51,8 @@ function query($query) {
 	if (!$request) return $array;
 	//print_r($request);
 	//print("_");
-	if (mysqli_num_rows($request)) {
-		while($row = mysqli_fetch_array($request)) {
+	if (mysql_num_rows($request)) {
+		while($row = mysql_fetch_array($request)) {
 			$array[] = $row;
 		}
 	}
@@ -62,7 +66,7 @@ function query1($query) {
 
 function affected()
 {
-	return mysqli_affected_rows($link);	
+	return mysql_affected_rows($link);
 
 }
 

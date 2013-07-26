@@ -6,15 +6,17 @@ function do_get_data() {
 	global $do, $dodo;
 	$q = "";
 	if ($dodo) {
-		$q = " WHERE id={$dodo}";
+		$q = " WHERE idblog={$dodo}";
 	}
 
-	$query = "SELECT unix_timestamp(created) t, created, id, title, filename from edidb.blog {$q} order by created limit 10";
+	$query = "SELECT unix_timestamp(datec) t, datec created, idblog id, title, data
+	 from ei_blog {$q} order by datec desc limit 10";
 	$r = query($query);
+	//print $query;
 	
 	$a = array();
 	foreach ($r as $rr) {
-		$rr["data"] = @file_get_contents(dirname(__FILE__)."/../blogs/".$rr["filename"]);
+	//	$rr["data"] = @file_get_contents(dirname(__FILE__)."/../blogs/".$rr["filename"]);
 		//$rr["data"] =  dirname(__FILE__)."/../blogs/".$rr["filename"];
 		$a[] = $rr;
 	}

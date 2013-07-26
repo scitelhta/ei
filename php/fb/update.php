@@ -4,23 +4,26 @@ require_once(dirname(__FILE__)."/../phpdb.php");
 
 
 
-
+//eventos mios todos
 function eventos($last, $token)
 {
+
+
 	$qr = "";
 	if ($last) $qr="&since={$last}";
 	//https://graph.facebook.com/100000065026573/events?limit=600&access_token=AAAFZCjV0GMcgBAKmGBtPxPkDdtZBiWCVsXuWixNzTUZC1qXNRFlZBlC7xotoJSZAaOIX8sKkvJCp5oqab2kts1WZCJS2cqC7rH6mtbDlRSSwZDZD
-	
+
 	$next = "https://graph.facebook.com/100000065026573/events?limit=600&access_token={$token}{$qr}";
 	//$next = "https://graph.facebook.com/110594545686574/events?limit=600&access_token={$token}{$qr}";
-	$query1 = "INSERT IGNORE INTO events (itime, ftime, name, place, url, guid) VALUES ";
+	$query1 = "INSERT IGNORE INTO ei_event (datei, datef, name, place, url, guid, type) VALUES ";
 	$i = 0;
 	while(1) {
 		if (!$next) break;
 		//print $next;
 		//print "<br>";		
-		$r = file_get_contents($next);
-		print_r($r);
+		$r = @file_get_contents($next);
+		if (!$r) break;
+		print_r($r)."<br>";
 		$k = json_decode($r);
 		if (isset($k->paging)) {
 			$pagin = $k->paging;
@@ -42,7 +45,7 @@ function eventos($last, $token)
 			$name = str_replace("'", " ", mysql_real_escape_string (htmlentities($name)));
 			$location = str_replace("'", " ", mysql_real_escape_string (htmlentities($location)));
 			
-			$query2 = "('{$itime}', '{$ftime}', '{$name}', '{$location}', 'http://www.facebook.com/events/{$a->id}', '{$a->id}')";
+			$query2 = "('{$itime}', '{$ftime}', '{$name}', '{$location}', 'http://www.facebook.com/events/{$a->id}', '{$a->id}', '1')";
 			if ($i++) $query1 .= ", ";
 			$query1 .= $query2;
 		}
@@ -50,12 +53,12 @@ function eventos($last, $token)
 	}
 	$query1 .= ";";
 	//print($query1);
-	$r = db_query($query1);
+	$r = query($query1);
 	
 	
 }
 
-
+//estudiantes eventos
 function myeventos($last, $token)
 {
 	$qr = "";
@@ -66,14 +69,15 @@ function myeventos($last, $token)
 
 	//$next = "https://graph.facebook.com/100000065026573/events?limit=600&access_token={$token}{$qr}";
 	$next = "https://graph.facebook.com/110594545686574/events?limit=600&access_token={$token}{$qr}";
-	$query1 = "INSERT IGNORE INTO mevents (itime, ftime, name, place, url, guid) VALUES ";
+	$query1 = "INSERT IGNORE INTO ei_event (datei, datef, name, place, url, guid, type) VALUES ";
 	$i = 0;
 	while(1) {
 		if (!$next) break;
-		print $next;
+		print $next."<br>";;
 		
 		print "<br>";		
-		$r = file_get_contents($next);
+		$r =  @file_get_contents($next);
+		if (!$r) break;
 		//print_r($r);
 		
 		//break;
@@ -98,11 +102,11 @@ function myeventos($last, $token)
 				
 			$convmap= array(0x0100, 0xFFFF, 0, 0xFFFF);
 			$name1= mb_encode_numericentity($name, $convmap, 'UTF-8');
-			print $name1;
+			print $name1."<br>";;
 			print "_";
 			$name2= utf8_decode($name1);
 			print $name2;
-			print "..";
+			print ".."."<br>";;
 			$loc1= mb_encode_numericentity($location, $convmap, 'UTF-8');
 			$loc2= utf8_decode($loc1);
 						
@@ -110,27 +114,43 @@ function myeventos($last, $token)
 			$name = str_replace("'", " ",  mysql_real_escape_string(htmlentities($name2)));
 			$location = str_replace("'", " ",  mysql_real_escape_string(htmlentities($loc2)));
 			
-			$query2 = "('{$itime}', '{$ftime}', '{$name}', '{$location}', 'http://www.facebook.com/events/{$a->id}', '{$a->id}')";
+			$query2 = "('{$itime}', '{$ftime}', '{$name}', '{$location}', 'http://www.facebook.com/events/{$a->id}', '{$a->id}', '2')";
 			if ($i++) $query1 .= ", ";
 			$query1 .= $query2;
 			
-			$rpfile=dirname(__FILE__)."/../eventss/{$a->id}.jpg";
+			$rpfile=dirname(__FILE__)."/../../images/events/{$a->id}.jpg";
 			if (!file_exists($rpfile)) {
 				$rpicture = file_get_contents("https://graph.facebook.com/{$a->id}/picture?type=large&access_token={$token}");
 				file_put_contents($rpfile, $rpicture);
-				print_r(dirname(__FILE__)."/../eventss/{$a->id}.jpg");
+				print_r(dirname(__FILE__)."/../../images/events/{$a->id}.jpg");
 			}
 		}
 		
 	}
 	$query1 .= ";";
-	print($query1);
-	$r = db_query($query1);
+	print($query1)."<br>";;
+	$r = query($query1);
 	$e = mysql_error();
-	print $e;
+	print $e."<br>";;
 	
 }
 
+function blog_post($fecha, $uid, $file, $titulo,  $ptype, $alink)
+{
+	$query = "INSERT IGNORE INTO ei_blog(datec, iduser, title, filename, ptype, link) VALUES ('{$fecha}', '{$uid}', '{$titulo}', '{$file}', '{$ptype}', '{$alink}');";
+
+	print($query);
+
+
+	$r = query($query);
+
+	print $r;
+	return $r;
+
+}
+
+
+//articulos en estudiantes
 function estudiantes($last, $token)
 {
 
@@ -139,15 +159,16 @@ function estudiantes($last, $token)
 	
 
 	$next = "https://graph.facebook.com/110594545686574/feed?access_token={$token}{$qr}";
-	print $next;
+	print $next."<br>";;
 	
 	while(1) {
 		if (!$next) break;
-		$next .= "&limit=300";
-		print $next;
+		//$next .= "&limit=300";
+		print $next."<br>";;
 		
 		print "<br>";
-		$r = file_get_contents($next);
+		$r = @file_get_contents($next);
+		if (!$r) break;
 		//$r = file_get_contents("C:\\temp\\fbgraph1.txt");
 		print_r($r);
 		print "<br>";
@@ -160,7 +181,7 @@ function estudiantes($last, $token)
 		else $next = "";
 		$k = $k->data;
 		$l = count($k);
-		print($l);
+		print($l)."<br>";;
 		
 		//print("<br>");
 		if ($l < 1) break;
@@ -189,17 +210,18 @@ function estudiantes($last, $token)
 			if (isset($a->link))
 				$link = $a->link;
 				
-			$user = get_userbylogin($from);
-			if (!$user) {
-				set_userfb($from, $froma->name);
-				$user = get_userbylogin($from);
-			}
-			print $user;
+			//$user = get_userbylogin($from);
+			//if (!$user) {
+			//	set_userfb($from, $froma->name);
+			//	$user = get_userbylogin($from);
+			//}
+			$user = $from;
+			print $user."<br>";;
 			if (!$user) continue;
 				
 			$time = substr(str_replace("T", " ", $time), 0, 19);
 			$ffile = str_replace(":", "", str_replace("-", "", str_replace(" ", "", $time))). "_{$id}.php";
-			$file = dirname(__FILE__)."/../site/blog/".$ffile;
+			$file = dirname(__FILE__)."/../../blogs/".$ffile;
 			
 			$hmsg = ($message);
 
@@ -251,9 +273,17 @@ function estudiantes($last, $token)
 			$ll = strrpos(substr($s, 0, $l), " ");
 			if (($l == 64) && ($ll > 2)) $l = $ll;
 			$titulo = substr($s, 0, $l);
-				
-			
-			blog_post($time, $user["id"], $ffile, $titulo, '1', $alink);
+
+			$hmsg2 = str_replace("'", " ",  str_replace("\n","<br>",(htmlentities( utf8_decode($hmsg)))));
+			print "h2:".$hmsg2."<br>";
+
+			$query = "INSERT IGNORE INTO ei_blog(datec, iduser, title, data, ptype, link, guid, filename)
+			VALUES ('{$time}', '{$user}', '{$titulo}', '{$hmsg2}', '1', '{$alink}', '{$id}', '{$file}');";
+			query($query);
+			print $query."<br>";;
+			print mysql_error()."<br>";;
+
+//			blog_post($time, $user["id"], $ffile, $titulo, '1', $alink);
 				
 
 		}
@@ -262,210 +292,31 @@ function estudiantes($last, $token)
 	}
 	
 	$t = time();
-	$query = "REPLACE INTO uinfo (userid, ukey, uvalue) select id, 'lastfbupdate', '{$t}'  from users where login='100000065026573';";
-	$r = db_query($query);
+	//$query = "REPLACE INTO uinfo (userid, ukey, uvalue) select id, 'lastfbupdate', '{$t}'  from users where login='100000065026573';";
+	//$r = query($query);
 	//print ($query);
 
 }
 
-function eventos2($eventos, $token)
-{
 
-
-	$i = 0;
-	foreach($eventos as $e => $k)
-	{
-		if (!$k) continue;
-		$next = "https://graph.facebook.com/{$e}?access_token={$token}";
-		$r = file_get_contents($next);
-		print_r($r);
-		$a = json_decode($r);
-
-		if (!isset($a->id)) continue;
-
-		$itime = str_replace("T", " ", $a->start_time);
-		$ftime = str_replace("T", " ", $a->end_time);
-		$name = "";
-		$location = "";
-		if (isset($a->name)) $name = $a->name;
-		if (isset($a->location)) $location = $a->location;
-		
-		$convmap= array(0x0100, 0xFFFF, 0, 0xFFFF);
-		$name1= mb_encode_numericentity($name, $convmap, 'UTF-8');
-		print $name1;
-		print "_";
-		$name2= utf8_decode($name1);
-		print $name2;
-		print "..";
-		$loc1= mb_encode_numericentity($location, $convmap, 'UTF-8');
-		$loc2= utf8_decode($loc1);
-		
-		$name = str_replace("'", " ", mysql_real_escape_string ($name2));
-		$location = str_replace("'", " ", mysql_real_escape_string ($loc2));
-		$query1 = "INSERT IGNORE INTO events (itime, ftime, name, place, url, guid) VALUES ";
-		$i = 0;
-			
-		$query2 = "('{$itime}', '{$ftime}', '{$name}', '{$location}', 'http://www.facebook.com/events/{$a->id}', '{$a->id}')";
-		if ($i++) $query1 .= ", ";
-		$query1 .= $query2;		
-		$query1 .= ";";
-		print($query1);
-		$r = db_query($query1);
-
-	}
-
-}
-
-
-function prueba($last, $token)
-{
-
-
-
-
-	$qr = "";
-	if ($last) $qr="&since={$last}";
-	
-	
-	
-
-	//$next = "https://graph.facebook.com/110594545686574/feed?access_token={$token}{$qr}";
-	$next = "https://graph.facebook.com/223425221101722/feed?access_token={$token}{$qr}";
-	$kk= array();
-	while(1) {
-		if (!$next) break;
-		$next .= "&limit=300";
-		//print $next;
-		//print "<br>";
-		$r = file_get_contents($next);
-		//$r = file_get_contents("C:\\temp\\fbgraph1.txt");
-		print_r($r);
-		break;
-		$k = json_decode($r);
-		if (isset($k->paging)) {
-			$pagin = $k->paging;
-			$next = $pagin->next;
-		}
-		else $next = "";
-		$k = $k->data;
-		$l = count($k);
-		//print($l);
-		//print("<br>");
-		if ($l < 1) break;
-		foreach ($k as $a) {
-			$message = "";
-
-			if (isset($a->message))
-				$message = $a->message;
-
-			
-			$hmsg = ($message);
-
-			$ssp = preg_split("/[\s,]+/", $hmsg);
-			foreach ($ssp as $sss) {
-				if ((strpos($sss, "://")!==FALSE) && (strpos($sss, "facebook.com/events")!==FALSE) ) {
-					$sspp = preg_split("/[\/]+/", $sss);
-					foreach($sspp as $ssps) {
-						if (is_numeric($ssps)) {
-							$kk[$ssps]=1;
-						}
-					}
-				
-				}
-			}
-		
-
-		}
-		//if (!isset($k->paging)) break;
-		//if ($l < 30) break;
-	}
-	
-	$query = "SELECT guid FROM events";
-	$r = db_query($query);
-	$ar = db_fetch($r);
-	foreach ($ar as $a) {
-		$kk[$a["guid"]] = 0;
-	}
-	
-	
-	
-	eventos2($kk, $token);
-
-
-}
-
-function fbupdate($key)
-{
-	$message = isset($_REQUEST["message"])?$_REQUEST["message"]:"";
-	if ($key && $message) {
-		$xPost=array();
-		$xPost['access_token'] = $key;
-		$xPost['message'] = ($message);
-
-
-		$ch = curl_init('https://graph.facebook.com/100000065026573/feed'); 
-		curl_setopt($ch, CURLOPT_VERBOSE, 1); 
-		curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1); 
-		curl_setopt($ch, CURLOPT_HEADER, 1); 
-		curl_setopt($ch, CURLOPT_TIMEOUT, 120);
-		curl_setopt($ch, CURLOPT_POST, 1); 
-		curl_setopt($ch, CURLOPT_POSTFIELDS, $xPost); 
-		curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 0);  
-		curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0); 
-		curl_setopt($ch, CURLOPT_CAINFO, NULL); 
-		curl_setopt($ch, CURLOPT_CAPATH, NULL); 
-		curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 0); 
-
-		$result = curl_exec($ch); 
-		if (!$result) print curl_error($ch);
-		else print_r($result);
-		return;
-	}
-	if ($key) {
-		$token = $key;
-		$query = "INSERT INTO tokens (id, loged, unlog, ip, id_user) values ('".md5(rand())."', now(), date_add(now(), interval 100 day), '127.0.0.1', '1');";
-		db_query($query);
-		$query="UPDATE uinfo set uvalue='{$key}' where ukey='fbtoken' and userid in (SELECT id from users where login='100000065026573');";
-				//$query = "INSERT INTO tokens (id, loged, unlog, ip, id_user) values ('".md5(rand())."', now(), date_add(now(), interval 100 day), '127.0.0.1', '1');";
-		db_query($query);
-
-
-		//print(mysql_error());
-		//return;
-	}
-		else {
-		$query = "SELECT i.uvalue as token FROM uinfo i, users u where u.login='100000065026573' and u.id=i.userid and i.ukey='fbtoken';";
-		$r = db_query($query);
-		if (!$r) return;
-		$ar = db_fetch($r);
-		if (!$ar) return;
-		
-		$t = $ar[0]["token"];
-		
-		$ar = 0;
-		$last = 0;
-		$query = "SELECT i.uvalue as lsat FROM uinfo i, users u where u.login='100000065026573' and u.id=i.userid and i.ukey='lastfbupdate';";
-		$r = db_query($query);
-		if ($r) $ar = db_fetch($r);
-		if ($ar) $last = $ar[0]["lsat"];
-		
-		$token = $t;
-
-	}
-		
-	estudiantes($last, $token);
-
-	myeventos(0, $token);
-	//eventos($last, $t);
-	//eventos(0, $t);
-	//prueba($last, $t);
-
-
-}
 
 if (isset($_REQUEST["key"])) {
-	fbupdate($_REQUEST["key"]);
+
+	$key = $_REQUEST["key"];
+	query("SELECT 1;");
+
+	if (!isset($_REQUEST["up"])) {
+		estudiantes(0, $key);
+//		window.location = "?key={$_REQUEST["key"]}&up=my";
+	}
+	else {
+		if ($_REQUEST["up"]=="my") {
+			myeventos(0, $key);
+		}
+		else if ($_REQUEST["up"]=="e") {
+			eventos(0, $key);
+		}
+	}
 }
 
 ?>
-

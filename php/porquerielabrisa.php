@@ -10,14 +10,16 @@ function do_get_data()
 	        ORDER BY c.idcountry,d.iddistribute;";
 	$r = query($query);
 	$a = array();
-	foreach($r as $row) {
-		if (!isset($a[$row["country"]])) {
-			$a[$row["country"]] = array();
-		}
-		$a[$row["country"]][] = array("place" => utf8_encode($row["place"]),
-			"name"=>utf8_encode($row["name"]),
-				"url"=>$row["url"], "phone"=>$row["phones"], "image"=>$row["image"]);
+	if ($r) {
+		foreach($r as $row) {
+			if (!isset($a[$row["country"]])) {
+				$a[$row["country"]] = array();
+			}
+			$a[$row["country"]][] = array("place" => utf8_encode($row["place"]),
+				"name"=>utf8_encode($row["name"]),
+					"url"=>$row["url"], "phone"=>$row["phones"], "image"=>$row["image"]);
 
+		}
 	}
 	//print json_encode($a);
 	//exit;

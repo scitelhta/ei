@@ -4,7 +4,7 @@
 <script type='text/javascript' src='js/jqm.infinitescroll.js'></script>
 
 {% include ('do/xblog.html') %}
-
+{% if blog|length > 1 %}
 
    <a id="nextPage" href="xblog">Next Page</a>
 
@@ -29,5 +29,6 @@ function infi() {
 $(document).ready(function() {
 	infi();
 	});
+{% endif %}
 
 </script>

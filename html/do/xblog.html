@@ -3,7 +3,7 @@
 <div class="lista" data-role="collapsible" data-theme="b" data-content-theme="d" data-collapsed="false">
    <h3>{{r.title|raw}}</h3>
 	<ul data-role="listview" data-theme="d" data-divider-theme="d">
-		<li data-role="list-divider">{{r.created}}<span class="ui-li-count">2</span></li>
+		<li data-role="list-divider">{{r.created}}<span class="ui-li-count">{{ r.id }}</span></li>
 		<li><a href="blog_{{r.id}}">		
 			<p>{{r.data|raw}}</p>
 		</a></li>
