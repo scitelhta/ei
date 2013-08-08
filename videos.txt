@@ -1,0 +1,45 @@
+ando a nuestro Call Center al 1700123123 ó (02)2996200 (de lunes a domingo de 7h0
+
+videos="""
+http://www.youtube.com/watch?v=vhUsvLt2_M4
+http://www.youtube.com/watch?v=0W1rvQi2bKI
+http://www.youtube.com/watch?v=jM7ulnrY4ZQ
+http://www.youtube.com/watch?v=kMZRFEfBiIs
+http://www.youtube.com/watch?v=BdyiaWA7rkE
+http://www.youtube.com/watch?v=4OSgGxBlj5w
+http://www.youtube.com/watch?v=inItx7hzj2Q
+http://www.youtube.com/watch?v=eSz1zqbKMN8
+
+http://www.youtube.com/watch?v=PiZVQ1SAW1Y
+http://www.youtube.com/watch?v=jSERbjB9ie8
+http://www.youtube.com/watch?v=U8_yb63JpYU
+http://www.youtube.com/watch?v=ltrSFZoeAhY
+http://www.youtube.com/watch?v=tdFD34jwxx0
+
+
+http://www.youtube.com/watch?v=75owmpQmfhY
+http://www.youtube.com/watch?v=0cqAwWmNpvM
+http://www.youtube.com/watch?v=dP9v5XQ6olA
+http://www.youtube.com/watch?v=bJHhI4VtUx0
+http://www.youtube.com/watch?v=l-7MGHS5zZY
+http://www.youtube.com/watch?v=zDPM-hyqmg0
+http://www.youtube.com/watch?v=CTuOBOVKvSc
+http://www.youtube.com/watch?v=74s4eSnKEGE
+http://www.youtube.com/watch?v=upkSIEXJsdQ
+http://www.youtube.com/watch?v=VP_C5TesDgc
+http://www.youtube.com/watch?v=jGLDbCdboe8
+
+http://www.youtube.com/watch?v=S2TkalzuPIM
+http://www.youtube.com/watch?v=TGJyl34__SY
+http://www.youtube.com/watch?v=dO5fN3unAOc
+"""
+
+import os,sys,string,urllib
+
+d=videos.split()
+for a in d:
+  a=a.split("?v=")[-1]
+  if len(a)!=11: continue
+  f = urllib.urlopen("http://gdata.youtube.com/feeds/api/videos/%s?v=2&alt=jsonc" % id)
+  
+  

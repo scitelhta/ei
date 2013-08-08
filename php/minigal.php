@@ -8,12 +8,14 @@ function minigal()
 	$r = query($query);
 
 	$a = array();
-	foreach($r as $row) {
-		$image = $row["thumb"];
-		if (strpos($image, "//")=== false) {
-			$image = $imgb.$image;
+	if ($r) {
+		foreach($r as $row) {
+			$image = $row["thumb"];
+			if (strpos($image, "//")=== false) {
+				$image = $imgb.$image;
+			}
+			$a[] = array("image"=>$image, "id"=>$row["idphoto"], "title"=>$row["title"]);
 		}
-		$a[] = array("image"=>$image, "id"=>$row["idphoto"], "title"=>$row["title"]);
 	}
 	return $a;
 

@@ -1,56 +1,99 @@
 
 <script>
-	function album(id, name, author) {
-		$(".album").addClass("jiden");
-		$("#album_"+id).removeClass("jiden");
-		$("#album_title").html(name);
-		$("#album_author").html(name);
-		$("a[name='abutton']").buttonMarkup({ theme: "a" });
-				//attr("data-theme", "a");
-		$("#abutton_"+id).buttonMarkup({ theme: "b" });
-				//attr("data-theme", "b");
+
+$(document).on('pagebeforeshow', '#{{ do }}', function(){
+
+	$(".ui-collapsible-heading-toggle .ui-btn-text").each(function(){
+		//console.log($(this).text());
+		var t = $(this).text().replace("click to collapse contents", "");
+		//t= t.replace("click to expand contents", "");
+		//$(this).html(t);
+	});
+});
+</script>
+<div id="playercontainercontainer" style="width: 100%;text-align: center;">
+<div id="playercontainer" style="max-width:650px; display: inline-block;" >
+<div id="player"></div>
+</div>
+</div>
+
+<script>
+	// 2. This code loads the IFrame Player API code asynchronously.
+	var tag = document.createElement('script');
+
+	tag.src = "http://www.youtube.com/iframe_api";
+	var firstScriptTag = document.getElementsByTagName('script')[0];
+	firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+
+	// 3. This function creates an <iframe> (and YouTube player)
+	//    after the API code downloads.
+
+	function onYouTubeIframeAPIReady() {
+		window.guid = '{{ dodo }}';
+		window.player = new YT.Player('player', {
+			height: ($("#playercontainer").width() * 3)/4,
+			width: $("#playercontainer").width(),
+			videoId: window.guid,
+			events: {
+				'onReady': onPlayerReady,
+				'onStateChange': onPlayerStateChange
+			}
+		});
+		$(window).resize(function() {
+			window.player.setSize($("#playercontainer").width(), ($("#playercontainer").width() * 3)/4);
+
+		});
+	}
+
+	// 4. The API will call this function when the video player is ready.
+	function onPlayerReady(event) {
+		event.target.playVideo();
+	}
+
+	// 5. The API calls this function when the player's state changes.
+	//    The function indicates that when playing a video (state=1),
+	//    the player should play for six seconds and then stop.
+	window.done = false;
+	function onPlayerStateChange(event) {
+		if (event.data == YT.PlayerState.PLAYING && !window.done) {
+			//setTimeout(stopVideo, 6000);
+
+			window.done = true;
+		}
+		if (event.data == YT.PlayerState.ENDED) {
+			//alert("i");
+		}
+	}
+	function stopVideo() {
+		//player.stopVideo();
+	}
+
+	function abrirm(id) {
+		window.guid = id;
+		window.done = false;
+		window.scrollTo($("#player").offset().top, 0);
+		window.player.loadVideoById(id);
+		window.player.play();
 	}
 </script>
 
-<div data-role="header"  >
-	<div data-role="navbar">
-		<ul>
-			{% for a in media %}
-				<li><a href="javascript:album('{{ a.id }}', '{{ a.name }}', '{{ a.author }}')"
-				       id="abutton_{{ a.id }}"
-							{% if loop.first %}
-								data-theme="b"
-							{% else %}
-								data-theme="a"
-							{% endif %}
-					       name="abutton"
-							>{{a.title}}<p>{{ a.author }}</p></a></li>
-			{% endfor %}
-		</ul>
-	</div>
+<div data-role="collapsible-set" data-theme="c" data-content-theme="d" data-inset="true" data-collapsed-icon="arrow-r" data-expanded-icon="arrow-d">
+	{% for a in media  %}
+
+		<div data-role="collapsible" class="cmedia {% for m in a.media %} cm_{{ m.guid }} {% endfor %}" >
+			<h2>{{a.name}}</h2>
+			<ul class="album {% for m in a.media %} aa_{{ m.guid }} {% endfor %}" id="album_{{ a.id }}" data-role="listview"  data-inset="true">
+				{% for m in a.media %}
+					<li data-icon="false">
+						<a href="javascript:abrirm('{{ m.guid }}');">
+							<img src="{{m.image}}">
+							<h2>{{m.title}}</h2>
+							<p>{{m.description}}
+							</p>
+						</a>
+					</li>
+				{% endfor %}
+			</ul>
+		</div>
+	{% endfor %}
 </div>
-
-{#<div data-role="collapsible" data-collapsed="false" >#}
-{% for a in media %}
-	{% if loop.first %}
-		<h2><div  id="album_title">{{a.title}}</div></h2>
-		<h3><div id="album_author">{{ a.author }}</div></h3>
-		<audio controls="true" preload="none"id="iaudio">
-{#			<source  type="audio/mpeg" src="http://tesla.plunder.com/x/$OoqDlWjtO5c6qeQJVvsaVef_4bUumqQk/ZONI1B2OPX/Oracion%20(2)_01.mp3"/>
-			<source  type="audio/ogg" src="http://ei.com/oracion.ogg" />#}
-			Your browser does not support HTML5 audio.
-		</audio>
-
-	{% endif %}
-	<ul class="album {% if not loop.first %}jiden {% endif %}" id="album_{{ a.id }}" data-role="listview"  data-inset="true">
-		{% for m in a.media %}
-			<li data-icon="false">
-					<img src="{{m.image}}">
-					<h2>{{m.title}}</h2>
-					<p>{{m.description}}
-					</p>
-			</li>
-		{% endfor %}
-	</ul>
-{% endfor %}
-

@@ -6,22 +6,47 @@
         background-size: 100%;
     }
 </style>
+
+
+{% if events.mio|length>0 %}
+<ul data-role="listview" data-inset="true">
+	{% for e in events.mio %}
+	<li  data-icon="custom"><a href="{{e.url}}">
+			<img src="{{e.imagen}}">
+			<h2>{{e.nombre}}</h2>
+			<p>{{e.lugar}}</p>
+			<p>{{e.fechai}}</p>
+			<p>{{e.fechaf}}</p></a>
+	</li>
+	{% endfor %}
+</ul>
+{% endif %}
+
+
+{% if events.mes|length >0 %}
 <div data-role="collapsible-set" data-theme="c" data-content-theme="d" data-inset="true" data-collapsed-icon="arrow-r" data-expanded-icon="arrow-d">
-    {% for e in events %}
-    <div data-role="collapsible" >
-        <h2>{{e.nombre}}</h2>
-        <ul data-role="listview" data-inset="true">
-            <li  data-icon="custom"><a href="{{e.url}}">
-                <img src="{{e.imagen}}">
-                <h2>{{e.nombre}}</h2>
-                <p>{{e.lugar}}</p>
-               <p>{{e.fechai}}</p>
-                <p>{{e.fechaf}}</p></a>
-            </li>
-        </ul>
-    </div>
-    {% endfor %}
+{% for ee in events.mes %}
+	    <div data-role="collapsible" >
+	        <h2>{{ee.nombre}}</h2>
+	        <ul data-role="listview" data-inset="true">
+				{% for e in ee.events %}
+	            <li  data-icon="custom"><a href="{{e.url}}">
+	                <img src="{{e.imagen}}">
+	                <h2>{{e.nombre}}</h2>
+	                <p>{{e.lugar}}</p>
+	               <p>{{e.fechai}}</p>
+	                <p>{{e.fechaf}}</p></a>
+	            </li>
+				{% endfor %}
+	        </ul>
+	    </div>
+{% endfor %}
 </div>
+{% endif %}
+
+{% if (events.mes|length == 0) and (events.mio|length == 0) %}
+<a data-role="button" href="events">No hay eventos pautados.</a>
+{% endif %}
 
 {%else%}
 <div>

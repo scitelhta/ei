@@ -10,7 +10,13 @@
 		<h3>Galería de fotos</h3>
 		<div class="minigal">
 		{% for p in minigal %}
-			<a href="gallery_{{ p.id }}" title="{{ p.title }}">
+			<a
+					{% if do =='gallery' %}
+					href="javascript:abrirp('{{ p.id }}')"
+					{% else %}
+					href="gallery_{{ p.id }}"
+					{% endif %}
+					title="{{ p.title }}">
 				<img src="{{ p.image }}" class="imgthb" />
 			</a>
 		{% endfor %}

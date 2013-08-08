@@ -9,13 +9,13 @@
 <link rel="stylesheet" href="./css/style.css" />
 <link rel="stylesheet" href="./css/jquery.mobile-1.3.1.min.css" />
 
-<script src="http://www.photoswipe.com/latest/lib/klass.min.js"></script>
 
 <script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
 <script src="http://code.jquery.com/mobile/1.3.1/jquery.mobile-1.3.1.min.js"></script>
 <link rel="stylesheet" type="text/css" href="http://cdn.ucb.org.br/Scripts/tablesorter/blue/style.css" />
 
 <link rel="stylesheet" href="http://www.photoswipe.com/latest/photoswipe.css" />
+	<script src="http://www.photoswipe.com/latest/lib/klass.min.js"></script>
 <script src="http://www.photoswipe.com/latest/code.photoswipe.jquery-3.0.4.min.js"></script>
 
 {%if not mobile %}
@@ -40,8 +40,11 @@ $(document).ready(function(){
 
     $(".tablesorter").tablesorter();
 
-});	
-	
+
+
+});
+
+
 	
 </script>
 <style>
@@ -83,7 +86,7 @@ $(document).ready(function(){
 			width:15% !important;
 		}
 		.jright {
-			width:15% !important;
+			width:15% !important;anel
 		}
 		.jcenter {
 			width:70% !important;
@@ -91,6 +94,9 @@ $(document).ready(function(){
 
 	}
 	{% endif %}
+
+	.ui-controlgroup-horizontal { text-align: center !important; float: none; }
+
 </style>
 
 
@@ -99,20 +105,40 @@ $(document).ready(function(){
 </head>
 <body>
 
-<div data-role="page" id="home">
-<div data-role="header"  data-position="fixed" class="ui-bar ui-bar-b" style="z-index: 8000;height:30px;">
-	<div class="ui-btn-left" data-role="controlgroup" data-type="horizontal">
-		<a href="about" data-role="button" data-mini="true"><img src="images/inicio.png" height="18" width="18" ></a>
+<div data-role="page" id="{{ do }}">
+<script>
+	$(document).on('pageinit',function(){
+		{% if mobile %}
+		$( document ).on( "swipeleft swiperight", "#{{ do }}", function( e ) {
 
-		<a href="events" data-role="button" data-mini="true"><img src="images/events.png" height="18" width="18" ></a>
-		<a href="media" data-role="button" data-mini="true"><img src="images/musica.png" height="18" width="18" ></a>
-		<a href="gallery" data-role="button" data-mini="true"><img src="images/galeria.png" height="18" width="18" ></a>
+			//alert(e.type);
+			if ( e.type === "swipeleft"  ) {
+				$( "#{{ do }} #pright" ).panel( "open" , {swipeClose:false});
+			} else if ( e.type === "swiperight" ) {
+				$( "#{{ do }} #pleft" ).panel( "open"  , {swipeClose:false});
+			}
 
-		<a href="blog" data-role="button" data-mini="true"><img src="images/sol.png" height="18" width="18" ></a>
-		<a href="porquerielabrisa" data-role="button" data-mini="true"><img src="images/libro.png" height="18" width="18" ></a>
+		});
+		{% endif %}
+	});
+</script>
+	{% if mobile %}
+	<div data-role="panel" id="pleft"  data-position="left" data-display="push" data-theme="b">
+		{% include ('panel.html') %}
 	</div>
-	<h1>Estudiantes del Instante</h1>
-</div>
+	<div data-role="panel" id="pright"  data-position="right" data-display="push" data-theme="b">
+		{% include ('panel.html') %}
+	</div>
+	{% else %}
+
+	<div data-role="header"  data-position="fixed" class="ui-bar ui-bar-b" style="z-index: 8000;height:30px;">
+		<div data-role="controlgroup" data-type="horizontal">
+			{% for p in paginas %}
+			<a href="{{ p.name }}" data-role="button" data-mini="true"><img src="images/{{ p.name }}.png" height="18" width="18" >{{ p.title }}</a>
+			{% endfor %}
+		</div>
+	</div>
+	{% endif %}
 <div data-role="header">
 {% include 'head.html' %}
 </div>
@@ -123,14 +149,14 @@ $(document).ready(function(){
 			{% include(lefthtml) %}
 		</div>
 		<div class="ui-block-b jcenter" style="padding:4px;">
-			{% include(bodyhtml) %}
+			{% include[bodyhtml, '404.html'] %}
 		</div>
 		<div class="ui-block-c jright">
 			{% include(righthtml) %}
 		</div>
 	</div>
 {% else %}
-{% include(bodyhtml) %}
+{% include [bodyhtml, '404.html'] %}
 {% endif %}
 </div>
 <div data-role="footer" data-position="fixed">
@@ -138,6 +164,21 @@ $(document).ready(function(){
 </div>
 </div>
 
+
+<script type="text/javascript">
+
+	var _gaq = _gaq || [];
+	_gaq.push(['_setAccount', 'UA-33252048-1']);
+	_gaq.push(['_setDomainName', 'estudiantesdelinstante.net']);
+	_gaq.push(['_trackPageview']);
+
+	(function() {
+		var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+		ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+		var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+	})();
+
+</script>
 
 
 </body>

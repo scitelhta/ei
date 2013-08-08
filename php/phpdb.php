@@ -1,18 +1,21 @@
 <?php
 
 
+if ($_SERVER["SERVER_NAME"] == "estudiantesdelinstante.net") {
 
 $host = 'edidbz.db.11331539.hostedresource.com';
 $user = 'edidbz';
 $pass = 'Menso345@';
 $db = 'edidbz';
+}
+else{
 
-/*
 $host = 'server.celmedia.info';
 $user = 'root';
 $pass = 'cerebro';
 $db = 'edidb';
-*/
+}
+
 /*
 $host = 'server.celmedia.info';
 $user = 'root';
@@ -39,7 +42,7 @@ function connect() {
 
 function query($query) {
 	$link = connect();
-	print mysql_error()."<br>";
+	//print mysql_error()."<br>";
 	$request = mysql_query($query, $link);
 	if (is_bool($request)) {
 		if ($request) 

@@ -5,7 +5,12 @@
 		$("#gallery_title").html(t);
 	}
 
-	$(document).on('pagebeforeshow', '#home', function(){
+	function abrirp(dodo) {
+		$(".cc_"+dodo).trigger("expand");
+		$("#f_"+dodo).trigger("click");
+	}
+
+	$(document).on('pagebeforeshow', '#{{ do }}', function(){
 		var v = {
 			jQueryMobile: true,
 			loop: true,
@@ -18,20 +23,39 @@
 				e.target.hide();
 			});
 		};
-		{% for g in gallery|keys %}
-			var myPhotoSwipe_{{ loop.index0 }} = $("#galeria_{{ loop.index0 }} li a").photoSwipe(v);
-			myPhotoSwipe_{{ loop.index0 }}.addEventHandler(window.Code.PhotoSwipe.EventTypes.onShow, f);
-		{% endfor %}
 
+		//console.log(typeof window.myPhotoSwpie_0);
+		if (typeof window.myPhotoSwpie_0 == 'undefined') {
+			{% for g in gallery|keys %}
+				window.myPhotoSwipe_{{ loop.index0 }} = $("#galeria_{{ loop.index0 }} li a").photoSwipe(v);
+				window.myPhotoSwipe_{{ loop.index0 }}.addEventHandler(window.Code.PhotoSwipe.EventTypes.onShow, f);
 
+			{% endfor %}
+		}
+
+		$(".ui-collapsible-heading-toggle .ui-btn-text").each(function(){
+			//console.log($(this).text());
+			var t = $(this).text().replace("click to collapse contents", "");
+			t= t.replace("click to expand contents", "");
+			$(this).html(t);
+		});
+
+		{% if dodo %}
+			console.log("{{ dodo }}");
+			abrirp("{{ dodo }}");
+		{% endif %}
 
 		//<div class="ps-toolbar-close" style="padding-top: 12px;">View All</div>
 		//myPhotoSwipe.show(1);
 	});
 
+
+
 </script>
+{#
 <div data-role="header"  >
     <div data-role="navbar">
+	    {% if gallery|length %}
         <ul>
             {% for g in gallery|keys %}
             <li><a href="javascript:galeria({{loop.index0}}, '{{ g }}')"
@@ -41,18 +65,22 @@
                 >{{g}}</a></li>
             {% endfor %}
         </ul>
+	    {% endif %}
     </div>
 </div>
+#}
 
-{#<div data-role="collapsible" data-collapsed="false" >#}
-	{% for g,photos in gallery %}
-		{% if loop.first %}
-		<h2><div  id="gallery_title">{{g}}</div></h2>
-		{% endif %}
-		<ul class="gallery {% if not loop.first %}jiden {% endif %}" id="galeria_{{ loop.index0 }}">
-            {% for f in photos %}
-            <li><a href="{{f.imagen}}">
-                <img src="{{f.thumb}}" alt="{{f.titulo}}"></a></li>
-            {% endfor %}
-        </ul>
+<div data-role="collapsible-set" data-theme="c" data-content-theme="d" data-inset="true" data-collapsed-icon="arrow-r" data-expanded-icon="arrow-d">
+	{% for gal in gallery %}
+		<div data-role="collapsible" class="cgal {% for f in gal.photos %} cc_{{ f.id }} {% endfor %}" >
+			<h2>{{gal.g}}</h2>
+			<ul class="gallery" id="galeria_{{ loop.index0 }}">
+				{% for f in gal.photos %}
+					<li><a href="{{f.imagen}}">
+							<img id="f_{{ f.id }}" src="{{f.thumb}}" alt="{{f.titulo}}"></a></li>
+				{% endfor %}
+			</ul>
+		</div>
 	{% endfor %}
+</div>
+

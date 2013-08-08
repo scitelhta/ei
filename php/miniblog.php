@@ -11,7 +11,7 @@ function miniblog()
 	$a = array();
 	if ($r) {
 		foreach($r as $row) {
-			$a[] = array("id"=>$row["id"], "title"=>html_entity_decode(utf8_encode($row["title"])));
+			$a[] = array("id"=>$row["id"], "title"=>html_entity_decode(($row["title"])));
 		}
 	}
 	return $a;

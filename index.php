@@ -34,9 +34,21 @@ $data["rss"] = "/rss";
 $data["mobile"] = $mobile;
 $data["layout"] = $layout;
 $data["do"] = $do;
+$data["dodo"] = $dodo;
 $data["bodyhtml"] = "do/{$do}.html";
 $data["lefthtml"] = "left.html";
 $data["righthtml"] = "right.html";
+
+
+$data["paginas"] = array(
+	array("name"=>"about", "title"=>"Inicio", "title2"=>"Fundación"),
+	array("name"=>"events", "title"=>"Eventos", "title2"=>"Próximos Eventos"),
+	array("name"=>"media", "title"=>"Música", "title2"=>"Música y Videos"),
+	array("name"=>"gallery", "title"=>"Galería", "title2"=>"Galería de Imágenes"),
+	array("name"=>"blog", "title"=>"Pensamientos", "title2"=>"Pensamientos y Reflexiones"),
+	array("name"=>"porquerielabrisa", "title"=>"Libro", "title2"=>"Por qué ríe la brisa")
+	);
+
 
 if (@include(dirname(__FILE__)."/php/{$do}.php")) {
 	$data[$do] = do_get_data();	

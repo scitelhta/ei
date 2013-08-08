@@ -1,0 +1,10 @@
+<ul data-role="listview">
+	{% for p in paginas %}
+
+	<li>
+	<a href="{{ p.name }}" >
+		<img src="images/{{ p.name }}.png" class="ui-li-icon">{{ p.title }}</a>
+	</li>
+
+	{% endfor %}
+</ul>

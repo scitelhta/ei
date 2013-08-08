@@ -15,8 +15,8 @@ function do_get_data()
 			if (!isset($a[$row["country"]])) {
 				$a[$row["country"]] = array();
 			}
-			$a[$row["country"]][] = array("place" => utf8_encode($row["place"]),
-				"name"=>utf8_encode($row["name"]),
+			$a[$row["country"]][] = array("place" => ($row["place"]),
+				"name"=>($row["name"]),
 					"url"=>$row["url"], "phone"=>$row["phones"], "image"=>$row["image"]);
 
 		}
