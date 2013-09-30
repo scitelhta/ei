@@ -30,6 +30,7 @@ $(document).on('pagebeforeshow', '#{{ do }}', function(){
 
 	function onYouTubeIframeAPIReady() {
 		window.guid = '{{ dodo }}';
+		if (!window.guid) window.guid = 'EqSVgZJyFzQ';
 		window.player = new YT.Player('player', {
 			height: ($("#playercontainer").width() * 3)/4,
 			width: $("#playercontainer").width(),
