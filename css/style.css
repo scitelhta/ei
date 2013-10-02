@@ -125,18 +125,32 @@ left: 0px;
 .innertube {
 	margin-right:10px;
 }
-.ui-icon-menu {
+.ui-icon-menu:after {
 	background-image: url("../images/menu.png") !important;
 }
-.ui-icon-sol {
+.ui-icon-sol:after {
 	background-image: url("../images/blog.png") !important;
 }
-.ui-icon-libro {
+.ui-icon-libro:after {
 	background-image: url("../images/porquerielabrisa.png") !important;
 }
-.ui-icon-galeria {
+.ui-icon-galeria:after {
 	background-image: url("../images/gallery.png") !important;
 }
+
+.ui-icon-menu {
+    background-image: url("../images/menu.png") !important;
+}
+.ui-icon-sol {
+    background-image: url("../images/blog.png") !important;
+}
+.ui-icon-libro {
+    background-image: url("../images/porquerielabrisa.png") !important;
+}
+.ui-icon-galeria {
+    background-image: url("../images/gallery.png") !important;
+}
+
 .innertube .ui-btn-inner {
 	white-space: normal !important;
 	font-size: 14px !important;
@@ -172,4 +186,9 @@ p.ui-li-desc{
 {
 	top:90% !important;
 }
+}
+
+.ui-bar-a, .ui-overlay-a .ui-bar-inherit, .ui-page-theme-a .ui-bar-inherit, html .ui-bar-a .ui-bar-inherit, html .ui-body-a .ui-bar-inherit, html body .ui-group-theme-a .ui-bar-inherit {
+
+    background-color: #6699cc !important;
 }

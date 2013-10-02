@@ -49,6 +49,9 @@ $data["paginas"] = array(
 	array("name"=>"porquerielabrisa", "title"=>"Libro", "title2"=>"Por qué ríe la brisa")
 	);
 
+if (@include(dirname(__FILE__)."/php/ei.php")) {
+    $data["ei"] = do_get_ei();
+}
 
 if (@include(dirname(__FILE__)."/php/{$do}.php")) {
 	$data[$do] = do_get_data();	

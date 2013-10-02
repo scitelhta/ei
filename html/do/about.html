@@ -1,67 +1,30 @@
+{% set foo = {'f':'Estudiantes del Instante', 'a':'Actividades', 'p':'Proyectos'}   %}
 
-<div style="float:left;">
-<img src="./images/ei256.png" style="width:261px;height:231px	;"/>
+{% for ftype, ftitle in foo %}
+
+{% if ftype in ei.types %}
+
+<h3>{{ ftitle }}</h3>
+
+<div data-role="collapsible-set" data-theme="c" data-content-theme="d" data-inset="true" data-collapsed-icon="arrow-r" data-expanded-icon="arrow-d">
+    {% for ee in ei.files  %}
+    {% if ee.type == ftype %}
+    <div data-role="collapsible" {% if ee.open %} data-collapsed="false" {% endif %}>
+        {% include [ee.html, '404.html'] %}
+    </div>
+    {% endif %}
+    {% endfor %}
 </div>
+
+<div style="width:100%;height:5px;">
+</div>
+
+{% endif %}
+
+{% endfor %}
+
 <div style="padding:20px;text-align:left;_float:left;">
 
-
-<p>
-
-La Fundación "Estudiantes del Instante" es una asociación sin fines de lucro
-que se empeña en abrir y ofrecer oportunidades para el estudio del ser interior.
-Se promueven y organizan eventos en los que se busca y estimula el auto-descubrimiento del individuo.
-</p>
-<p>
-Sin representar ninguna doctrina o método en específico, la fundación está dispuesta a expandir el
-conocimiento y la práctica de múltiples terapias y disciplinas que llamen al despertar espiritual de las
-personas que lo busquen o lo necesiten.
-</p>
-<p>
-La labor social propuesta no intenta solamente mantener al margen el descontento de las personas o proveerles
-recursos efímeros, sino el de mostrarles su propia fortaleza, apoyarles a que ellos mismos asuman su
-potencial de paz y felicidad.
-No hay límites en la sanación de un participante. Desde la rehabilitación a partir de vicios y traumas, hasta
-la maestría de entender la totalidad del ser.
-</p>
-
-<h3>Proyectos</h3>
-Para corto plazo se prevé realizar las siguientes actividades:
-<ul>
-<li>Organización de encuentros relacionados a rituales indígenas milenarios, expandiendo el uso de las
-medicinas ancestrales en la vida urbana, en busca del mejoramiento de la convivencia en la ciudades y el mundo.
-Nos colaboran varios maestros estudiados en los lugares en que se manejan y aprenden estas ceremonias
-desde milenios. </li>
-<li>Terapias de Ayahuasca en zonas de alta probreza dirigido a hermanos con inclinaciones delictivas y presos de
-drogas y otros vicios.
-Dirige el taita Andrés Córdoba, médico ancestral de la cultura Inga, criado por los cofanes y con muchos
-años  de experiencia en el rescate de barrios.</li>
-<li>Cursos de Constelaciones Familiares y otras terapias grupales y/o de parejas. Favoreciendo la
-armonía dentro de los hogares que son el núcleo de la sociedad y la causa de todas nuestras expresiones
-regionales y como humanidad en general.
-</li>
-<li>Promoción frecuente de meditaciones, cursos, conferencias, libros o medios audiovisuales que propaguen el
-conocimiento de aquellos hermanos que quieran compartirlo y que esñen en pro del bienestar del ser. </li>
-<li>Realización de carácter gratuito y periódico de clases de Yoga, Chi Kung, Tai Chi,
-Tensegridad, y cualquier otra disciplina energética para centrarse en el sí mismo.</li>
-<li>Levantamiento de una librería dirigida al ejercicio espiritual y al culturismo de la mente de forma
-que se vayan rompiendo barreras en los sistemas de pensamiento y en la búsqueda del entendimiento.
-</li>
-</ul>
-Para un mayor plazo, los objetivos que hasta ahora están planteados para la institución son:
-<ul>
-<li>Instalación física y propia de un centro de estudios en donde se disponga de un habitáculo comunal,
-de salones de enseñanza, de contacto con la naturaleza y con otros seres humanos, de un ambiente para
-rituales ceremoniales y de meditación y para cualquier otra actividad pausible.</li>
-<li>Apoyo económico, estructural o de recursos a otras asociaciones que tengan ya organizados sus formas de
-sanación y de estudio práctico del vivir.</li>
-<li>Contratación de profesores, instructores, terapeutas y masajistas para ofrecer en un lugar centralizado todo
-tipo de medicina holística que nutra a los participantes de un mejor estar.</li>
-<li>Retiros y peregrinaciones hacia sitios estratégicos que estimulen el crecimiento de esa paz interior que
-el ruido del mundo no nos deja escuchar.</li>
-<li>Fundación de escuelas laicas cuyas metodologías pedagógicas innoven en la educación de seres integrales,
-autopensantes y llenos de autoestima y amor.</li>
-</ul>
-<p>Algunos objetivos están aún nublados tras el horizonte, pero otros ya han sido trazados o incluso en ejecución.
 
 
 </div>
