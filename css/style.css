@@ -148,8 +148,40 @@ left: 0px;
     background-image: url("../images/porquerielabrisa.png") !important;
 }
 .ui-icon-galeria {
-    background-image: url("../images/gallery.png") !important;
+     background-image: url("../images/gallery.png") !important;
+ }
+
+.ui-icon-about {
+    background-image: url("../images/ei18.png") !important;
 }
+.ui-icon-funciones {
+    background-image: url("../images/funciones.png") !important;
+}
+.ui-icon-mvision {
+    background-image: url("../images/mvision.png") !important;
+}
+
+.ui-icon-yage {
+    background-image: url("../images/ayahuasca.png") !important;
+}
+
+.ui-icon-meditacion {
+    background-image: url("../images/meditacion.png") !important;
+}
+
+.ui-icon-instrumentos {
+    background-image: url("../images/instrumentos.png") !important;
+}
+
+.ui-icon-abrazos {
+    background-image: url("../images/abrazos.png") !important;
+}
+
+.ui-icon-terapias {
+    background-image: url("../images/terapias.png") !important;
+}
+
+
 
 .innertube .ui-btn-inner {
 	white-space: normal !important;

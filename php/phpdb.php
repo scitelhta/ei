@@ -1,7 +1,8 @@
 <?php
 
 
-if ($_SERVER["SERVER_NAME"] == "estudiantesdelinstante.net") {
+//if ($_SERVER["SERVER_NAME"] == "estudiantesdelinstante.net") {
+if (1) {
 
 $host = 'edidbz.db.11331539.hostedresource.com';
 $user = 'edidbz';
@@ -35,6 +36,7 @@ function connect() {
 	global $host, $user, $pass, $db;
 
 	$link = mysql_connect($host, $user, $pass );
+    //print $host." ".$user;
 	mysql_select_db($db, $link);
 	if (!$link) { die('Could not connect: ' . mysql_error()); }
 	return $link;
@@ -43,7 +45,10 @@ function connect() {
 function query($query) {
 	$link = connect();
 	//print mysql_error()."<br>";
+    //print $query."<br>";
 	$request = mysql_query($query, $link);
+    //print_r($request);
+
 	if (is_bool($request)) {
 		if ($request) 
 			return mysql_insert_id($link);

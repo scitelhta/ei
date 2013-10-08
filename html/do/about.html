@@ -1,3 +1,5 @@
+
+
 {% set foo = {'f':'Estudiantes del Instante', 'a':'Actividades', 'p':'Proyectos'}   %}
 
 {% for ftype, ftitle in foo %}
@@ -5,11 +7,11 @@
 {% if ftype in ei.types %}
 
 <h3>{{ ftitle }}</h3>
-
-<div data-role="collapsible-set" data-theme="c" data-content-theme="d" data-inset="true" data-collapsed-icon="arrow-r" data-expanded-icon="arrow-d">
+{# data-collapsed-icon="arrow-r" data-expanded-icon="arrow-d" #}
+<div data-role="collapsible-set"  data-theme="c" data-content-theme="d" data-inset="true" >
     {% for ee in ei.files  %}
     {% if ee.type == ftype %}
-    <div data-role="collapsible" {% if ee.open %} data-collapsed="false" {% endif %}>
+    <div data-role="collapsible" name="{{ee.icon}}" {% if ee.open %} data-collapsed="false" {% endif %} data-collapsed-icon="{{ee.icon}}" data-expanded-icon="{{ee.icon}}"    >
         {% include [ee.html, '404.html'] %}
     </div>
     {% endif %}
@@ -29,3 +31,24 @@
 
 </div>
 
+<script>
+    $(document).on('pageshow',function(){
+
+        //window.scrollTo($("[name={{ei.go}}]").offset().top, 0);
+
+    //    $(document).ready(function(){
+   //$(window).scroll(function() {
+        var v = $("[name={{ei.go}}]");
+
+        if (v.length>0) {
+            window.lscroll = v[0].offsetTop;
+            setTimeout(function() {
+                $.mobile.silentScroll(window.lscroll);
+                window.scrollTo(window.lscroll, 0);
+            }, 100);
+
+        }
+
+
+    });
+</script>

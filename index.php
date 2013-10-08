@@ -38,6 +38,7 @@ $data["dodo"] = $dodo;
 $data["bodyhtml"] = "do/{$do}.html";
 $data["lefthtml"] = "left.html";
 $data["righthtml"] = "right.html";
+$data["errorhtml"] = "404.html";
 
 
 $data["paginas"] = array(
@@ -51,6 +52,9 @@ $data["paginas"] = array(
 
 if (@include(dirname(__FILE__)."/php/ei.php")) {
     $data["ei"] = do_get_ei();
+    if ($data["ei"]["go"]) {
+        $data["errorhtml"] = "do/about.html";
+    }
 }
 
 if (@include(dirname(__FILE__)."/php/{$do}.php")) {
@@ -71,9 +75,12 @@ if ($do == 'xblog') {
 	exit;
 }
 
+
 header('Content-type: text/html; charset=UTF-8');
 
 //print json_encode($data);
+
+//exit;
 echo $twig->render('main.html', $data);
 
 

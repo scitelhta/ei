@@ -149,14 +149,14 @@ $(document).ready(function(){
 			{% include(lefthtml) %}
 		</div>
 		<div class="ui-block-b jcenter" style="padding:4px;">
-			{% include[bodyhtml, '404.html'] %}
+			{% include[bodyhtml, errorhtml] %}
 		</div>
 		<div class="ui-block-c jright">
 			{% include(righthtml) %}
 		</div>
 	</div>
 {% else %}
-{% include [bodyhtml, '404.html'] %}
+{% include [bodyhtml, errorhtml] %}
 {% endif %}
 </div>
 <div data-role="footer" data-position="fixed">

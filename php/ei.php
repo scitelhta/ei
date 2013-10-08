@@ -1,5 +1,47 @@
 <?php
 
+function nombrepp($e)
+{
+    $a = explode(".", $e);
+    $a = explode("_", $a[0]);
+    return $a[count($a)-1];
+}
+
+function about_files()
+{
+    $files = array();
+    $dname = dirname(__FILE__).'/../html/ei';
+    $handle = opendir($dname);
+    while (false !== ($entry = readdir($handle))) {
+        $files[] = $entry;
+    }
+    closedir($handle);
+    return $files;
+}
+
+function do_get_about($files) {
+//    $files = about_files();
+    global $do;
+    $gdo = strtolower($do);
+    if (!$gdo) $gdo = "about";
+
+
+
+
+    sort($files);
+    $ll = 200;
+    $doabout = "404.html";
+    foreach($files as $file) {
+        $afile = strtolower(nombrepp($file));
+        $l = strpos($afile, $gdo);
+        if (($l !== false) && ($l < $ll)) {
+            $ll = $l;
+            $doabout = "ei/".$file;
+        }
+    }
+    return $doabout;
+}
+
 
 function do_get_ei() {
 
@@ -7,27 +49,30 @@ function do_get_ei() {
     $eis = array();//"dd10_mvision.html"=>array("about"));
     $types = "fap";
 
+
+
     $a = array("types"=>array());
     $f = array();
-    $dname = dirname(__FILE__).'/../html/ei';
-    $handle = opendir($dname);
     $opened = 0;
-    $files = array();
-    while (false !== ($entry = readdir($handle))) {
-        $files[] = $entry;
-    }
+    $files = about_files();
     sort($files);
-    foreach($files as $entry) {
+
+
+    $doabout = do_get_about($files);
+    foreach($files as $file) {
         $d = array();
-        if ($entry[0] != '.') {
+        if ($file[0] != '.') {
 //            $d["data"] = file_get_contents($dname."/".$entry);
             $d["open"] = 0;
-            $d["html"] = "ei/".$entry;
-            $d["type"] = $entry[0];
+            $d["html"] = "ei/".$file;
+            $d["type"] = $file[0];
+            $d["icon"] = nombrepp($file);
             $a["types"][] = $d["type"];
 
-            if ((!opened) && (strstr($entry, $do) !== false)) {
+
+            if ((!$opened) && ($d["html"] == $doabout)) {
                 $d["open"] = 1;
+                $a["go"] = $d["icon"];
                 $opened = 1;
             }
 
@@ -37,7 +82,6 @@ function do_get_ei() {
     if (!$opened) {
         $f[0]["open"] = 1;
     }
-    closedir($handle);
     $a["files"] = $f;
     return $a;
 }
