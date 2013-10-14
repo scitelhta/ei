@@ -181,6 +181,9 @@ left: 0px;
     background-image: url("../images/terapias.png") !important;
 }
 
+.ui-icon-permacultura {
+    background-image: url("../images/permacultura.png") !important;
+}
 
 
 .innertube .ui-btn-inner {

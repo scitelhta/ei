@@ -75,6 +75,10 @@ if ($do == 'xblog') {
 	exit;
 }
 
+if (@include(dirname(__FILE__)."/php/og.php")) {
+    $data["og"] = og_get($data);
+}
+
 
 header('Content-type: text/html; charset=UTF-8');
 
