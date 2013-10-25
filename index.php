@@ -83,7 +83,6 @@ if (@include(dirname(__FILE__)."/php/og.php")) {
 header('Content-type: text/html; charset=UTF-8');
 
 //print json_encode($data);
-
 //exit;
 echo $twig->render('main.html', $data);
 

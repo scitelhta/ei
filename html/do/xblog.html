@@ -6,6 +6,9 @@
 		<li data-role="list-divider">{{r.created}}<span class="ui-li-count">{{ r.id }}</span></li>
 		<li><a href="blog_{{r.id}}">		
 			<p>{{r.data|raw}}</p>
+            <div class="fb-like" data-href="http://estudiantesdelinstante.net/blog_{{r.id}}" data-width="100" data-height="50"
+                 data-colorscheme="light" data-layout="button_count" data-action="like" data-show-faces="true" data-send="false"></div>
+
 		</a></li>
 	</ul>
 </div>

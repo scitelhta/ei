@@ -1,5 +1,12 @@
 <?php
 
+
+
+$alias = array("yage"=>"ayahuasca", "abrazosgratis"=>"abrazos", "meregalasunabrazo"=>"abrazos",
+    "regalameunabrazo"=>"abrazos", "meditar"=>"meditacion",
+"circulos"=>"instrumentos", "sanacionespiritual"=>"terapias", "bioconstruccion"=>"permacultura",
+    "mision"=>"mvision", "fundacion"=>"about");
+
 function nombrepp($e)
 {
     $a = explode(".", $e);
@@ -21,24 +28,42 @@ function about_files()
 
 function do_get_about($files) {
 //    $files = about_files();
-    global $do;
+    global $do, $alias;
     $gdo = strtolower($do);
     if (!$gdo) $gdo = "about";
 
 
+    $ll = 200;
+    $name = "";
+    foreach($alias as $alia => $aname) {
+        $l = strpos($alia, $gdo);
+        if ($l === false) continue;
+        $l = strlen($alia)-strlen($gdo);
+        if ($l < $ll) {
+            $ll = $l;
+            $name = $aname;
+        }
+    }
+    if ($name) $gdo = $name;
+    $ll = 200;
 
+   // print $name.".".$gdo."<br>";
 
     sort($files);
-    $ll = 200;
     $doabout = "404.html";
     foreach($files as $file) {
         $afile = strtolower(nombrepp($file));
         $l = strpos($afile, $gdo);
-        if (($l !== false) && ($l < $ll)) {
+        if ($l === false) continue;
+        $l = strlen($afile)-strlen($gdo);
+        if ($l < $ll) {
             $ll = $l;
             $doabout = "ei/".$file;
         }
     }
+   // print $doabout."<br>";
+   // print_r($files);
+   // exit(0);
     return $doabout;
 }
 
@@ -73,6 +98,7 @@ function do_get_ei() {
             if ((!$opened) && ($d["html"] == $doabout)) {
                 $d["open"] = 1;
                 $a["go"] = $d["icon"];
+                $a["gohtml"] = $d["html"];
                 $opened = 1;
             }
 

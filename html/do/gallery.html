@@ -26,7 +26,7 @@
 
 		//console.log(typeof window.myPhotoSwpie_0);
 		if (typeof window.myPhotoSwpie_0 == 'undefined') {
-			{% for g in gallery|keys %}
+			{% for g in gallery.gal|keys %}
 				window.myPhotoSwipe_{{ loop.index0 }} = $("#galeria_{{ loop.index0 }} li a").photoSwipe(v);
 				window.myPhotoSwipe_{{ loop.index0 }}.addEventHandler(window.Code.PhotoSwipe.EventTypes.onShow, f);
 
@@ -55,9 +55,9 @@
 {#
 <div data-role="header"  >
     <div data-role="navbar">
-	    {% if gallery|length %}
+	    {% if gallery.gal|length %}
         <ul>
-            {% for g in gallery|keys %}
+            {% for g in gallery.gal|keys %}
             <li><a href="javascript:galeria({{loop.index0}}, '{{ g }}')"
                 {% if loop.first %}
                 class="ui-btn-active"
@@ -71,7 +71,7 @@
 #}
 
 <div data-role="collapsible-set" data-theme="c" data-content-theme="d" data-inset="true" data-collapsed-icon="arrow-r" data-expanded-icon="arrow-d">
-	{% for gal in gallery %}
+	{% for gal in gallery.gal %}
 		<div data-role="collapsible" class="cgal {% for f in gal.photos %} cc_{{ f.id }} {% endfor %}" >
 			<h2>{{gal.g}}</h2>
 			<ul class="gallery" id="galeria_{{ loop.index0 }}">

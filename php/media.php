@@ -4,7 +4,7 @@ function do_get_data()
     global $dodo;
     $q = "";
     if ($dodo) {
-        $q = " AND idmedia='{$dodo}''";
+      //  $q = " AND idmedia='{$dodo}''";
     }
 
 	define("DS","/",true);
@@ -27,6 +27,8 @@ function do_get_data()
 	$r = query($query);
 
 	$a = array();
+    $c = array();
+    $video = array();
 	$i = 0;
 	if ($r) {
 		foreach($r as $row) {
@@ -37,7 +39,7 @@ function do_get_data()
 			}
 			$image =($row["image"]);
 			if (strpos($image, "//")===false) {
-				$image = $imgb.str_replace("//", "/", m.image);
+				$image = $imgb.str_replace("//", "/", $image);
 			}
 			if ($row["type"] == 'youtube') {
 				$row["url"] = "http://www.youtube.com/watch?v=".$row["guid"];
@@ -46,10 +48,21 @@ function do_get_data()
 					"title"=>($row["title"]), "description"=>($row["description"]),
 					"url"=>($row["url"]), "type"=>$row["type"], "guid"=>$row["guid"]);
 
+            if ($dodo && ($dodo == $row["idmedia"])) {
+                $video["idmedia"] = $row["idmedia"];
+                $video["guid"] = $row["guid"];
+                $video["title"] = $row["title"];
+                $video["description"] = $row["description"];
+                $video["image"] = $row["image"];
+            }
+
 		}
 	}
 
-    return $a;
+    $c["media"] = $a;
+    $c["video"] = $video;
+
+    return $c;
 }
 
 

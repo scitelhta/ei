@@ -1,6 +1,7 @@
 <?php
 function do_get_data()
 {
+    global $dodo;
 
 	$imgb = $_SERVER["REQUEST_SCHEME"]."://".str_replace("//","/",$_SERVER["HTTP_HOST"].str_replace('\\', '/', dirname($_SERVER["REQUEST_URI"]))."/images/gallery/");
 
@@ -19,6 +20,7 @@ function do_get_data()
 
     $a = array();
 	$b = array();
+    $foto = array();
 	if ($r) {
 	    foreach($r as $row) {
 	        if (!isset($a[$row["galeria"]])) {
@@ -34,13 +36,25 @@ function do_get_data()
 	        }
 	        $a[$row["galeria"]][] = array("imagen"=>$imagen,
 	            "thumb"=>$thumb, "titulo"=>$row["titulo"], "id"=>$row["id"]);
+
+            if ($dodo && ($row["id"] == $dodo)) {
+                $foto["id"] = $row["id"];
+                $foto["thumb"] = $thumb;
+                $foto["imagen"] = $imagen;
+                $foto["galeria"] = $row["galeria"];
+                $foto["titulo"] = $row["titulo"];
+            }
 	    }
 	}
+
 	foreach($a as $g=>$aa) {
 		$b[] = array("g"=>(htmlentities($g)), "photos"=>$aa);
 	}
+    $c = array();
+    $c["gal"] = $b;
+    $c["foto"] = $foto;
 
-    return $b;
+    return $c;
 }
 
 

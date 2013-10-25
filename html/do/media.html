@@ -29,7 +29,7 @@ $(document).on('pagebeforeshow', '#{{ do }}', function(){
 	//    after the API code downloads.
 
 	function onYouTubeIframeAPIReady() {
-		window.guid = '{{ dodo }}';
+		window.guid = '{{ media.video.guid }}';
 		if (!window.guid) window.guid = 'EqSVgZJyFzQ';
 		window.player = new YT.Player('player', {
 			height: ($("#playercontainer").width() * 3)/4,
@@ -76,10 +76,11 @@ $(document).on('pagebeforeshow', '#{{ do }}', function(){
 		window.player.loadVideoById(id);
 		window.player.play();
 	}
+
 </script>
 
 <div data-role="collapsible-set" data-theme="c" data-content-theme="d" data-inset="true" data-collapsed-icon="arrow-r" data-expanded-icon="arrow-d">
-	{% for a in media  %}
+	{% for a in media.media  %}
 
 		<div data-role="collapsible" class="cmedia {% for m in a.media %} cm_{{ m.guid }} {% endfor %}" >
 			<h2>{{a.name}}</h2>
