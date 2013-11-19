@@ -1,0 +1,36 @@
+{% set rsocial=random()~random() %}
+
+<div id='a_{{rsocial}}'  class="fb-like" data-href="http://www.estudiantesdelinstante.net/{{url}}" data-width="300"
+     data-height="30" data-colorscheme="light" data-layout="button" data-action="like" data-show-faces="true"
+     data-send="false"></div>
+
+{# <div class="fb-like" data-href="http://www.estudiantesdelinstante.net/{{url}}" data-width="100" data-height="50"
+     data-colorscheme="light" data-layout="button_count" data-action="like" data-show-faces="true" data-send="false"></div>#}
+<br/>
+<div id='b_{{rsocial}}'  class="fb-comments" data-href="http://www.estudiantesdelinstante.net/{{url}}" data-colorscheme="light" data-numposts="5" data-width="500"></div>
+<script>
+    $(document).ready(function() {
+        if (typeof FB !== 'undefined') {
+        FB.XFBML.parse();
+    }
+    {% if medidor %}
+        setInterval(function() {
+            var medidor = "{{medidor}}";
+            if (medidor[0]!='.') medidor = "#"+medidor;
+
+            var w1 = $(medidor).width();
+            var w2 = $("#b_{{rsocial}} iframe").width();
+            if (w1 && (w1 != w2)) {
+                $("#b_{{rsocial}} iframe").css("width", w1);
+            }
+            var h1 = $("#a_{{rsocial}} iframe").height();
+            if (!h1) {
+                $("#a_{{rsocial}} span").css("height", 30);
+                $("#a_{{rsocial}} iframe").css("height", 30);
+            }
+
+        }, 500);
+
+    {% endif %}
+    });
+</script>

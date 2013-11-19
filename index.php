@@ -84,6 +84,10 @@ header('Content-type: text/html; charset=UTF-8');
 
 //print json_encode($data);
 //exit;
+if ($do == "pruebas") {
+    echo $twig->render('prueba.html', $data);
+    exit;
+}
 echo $twig->render('main.html', $data);
 
 

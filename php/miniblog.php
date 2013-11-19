@@ -4,7 +4,7 @@
 function miniblog()
 {
 
-	$query = "SELECT idblog id, title from ei_blog where length(title)>0 order by datec desc limit 6";
+	$query = "SELECT idblog id, title from ei_blog where state=0 and length(title)>0 order by datec desc limit 6";
 	$r = query($query);
 
 

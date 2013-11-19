@@ -3,7 +3,13 @@
 </script>
 <script type='text/javascript' src='js/jqm.infinitescroll.js'></script>
 
+{% if blog|length == 1 %}
+{% set xblog=1 %}
+{% endif %}
+
 {% include ('do/xblog.html') %}
+
+
 {% if blog|length > 1 %}
 
    <a id="nextPage" href="xblog">Next Page</a>

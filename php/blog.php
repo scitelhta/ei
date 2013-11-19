@@ -6,11 +6,11 @@ function do_get_data() {
 	global $do, $dodo;
 	$q = "";
 	if ($dodo) {
-		$q = " WHERE idblog={$dodo}";
+		$q = " AND idblog={$dodo}";
 	}
 
 	$query = "SELECT unix_timestamp(datec) t, datec created, idblog id, title, data
-	 from ei_blog {$q} order by datec desc limit 10";
+	 from ei_blog WHERE state=0 {$q} order by datec desc limit 10";
 	$r = query($query);
 	//print $query;
 	

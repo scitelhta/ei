@@ -88,7 +88,7 @@ function og_get($data)
     }
 
     if ($file && (!$description)) {
-        $d = file_get_contents(dirname(__FILE__)."/../html/".$file);
+        $d = @file_get_contents(dirname(__FILE__)."/../html/".$file);
         if (strpos($t2, "<")!==false) {
             $l = strpos($d, $t2);
             if ($l !== FALSE) {
