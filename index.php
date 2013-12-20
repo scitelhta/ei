@@ -71,7 +71,7 @@ if ($do == 'xblog') {
 	if (@include(dirname(__FILE__)."/php/blog.php")) {
 		$data["blog"] = do_get_data();	
 	}
-	echo $twig->render('do/xblog.html', $data);
+    echo $twig->render('do/xblog.html', $data);
 	exit;
 }
 
@@ -91,5 +91,4 @@ if ($do == "pruebas") {
 echo $twig->render('main.html', $data);
 
 
-?>
 

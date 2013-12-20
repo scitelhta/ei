@@ -56,4 +56,3 @@ function do_get_data() {
 }
 
 
-?>

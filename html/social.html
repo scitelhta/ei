@@ -19,14 +19,14 @@
             if (medidor[0]!='.') medidor = "#"+medidor;
 
             var w1 = $(medidor).width();
-            var w2 = $("#b_{{rsocial}} iframe").width();
+            var w2 = $("#b_{{rsocial}}".find("iframe").width();
             if (w1 && (w1 != w2)) {
-                $("#b_{{rsocial}} iframe").css("width", w1);
+                $("#b_{{rsocial}}".find("iframe").css("width", w1);
             }
-            var h1 = $("#a_{{rsocial}} iframe").height();
+            var h1 = $("#a_{{rsocial}}".find("iframe").height();
             if (!h1) {
-                $("#a_{{rsocial}} span").css("height", 30);
-                $("#a_{{rsocial}} iframe").css("height", 30);
+                $("#a_{{rsocial}}").find("span").css("height", 30);
+                $("#a_{{rsocial}}").find("iframe").css("height", 30);
             }
 
         }, 500);

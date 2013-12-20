@@ -159,6 +159,36 @@ function blog_post($fecha, $uid, $file, $titulo,  $ptype, $alink)
 }
 
 
+function friends($last, $token)
+{
+
+
+
+
+    $qr = "";
+    if ($last) $qr="&since={$last}";
+
+
+
+
+    //$next = "https://graph.facebook.com/110594545686574/feed?access_token={$token}{$qr}";
+    $next = "https://graph.facebook.com/me/friends?access_token={$token}{$qr}";
+    $kk= array();
+    while(1) {
+        if (!$next) break;
+        $next .= "&limit=300";
+        //print $next;
+        //print "<br>";
+        $r = file_get_contents($next);
+        file_put_contents("fb.txt", $r);
+        //$r = file_get_contents("C:\\temp\\fbgraph1.txt");
+        print_r($r);
+    }
+
+
+
+}
+
 //articulos en estudiantes
 function estudiantes($last, $token)
 {
@@ -325,6 +355,9 @@ if (isset($_REQUEST["key"])) {
 		else if ($_REQUEST["up"]=="e") {
 			eventos(0, $key);
 		}
+        else if ($_REQUEST["up"]=="f") {
+            friends(0, $key);
+        }
 	}
 }
 

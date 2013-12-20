@@ -18,7 +18,7 @@
 			enableKeyboard: false
 		};
 
-		f = function(e) {
+		var f = function(e) {
 			$(document).off('click', '.second-close').on('click', '.second-close', function(){
 				e.target.hide();
 			});
@@ -26,7 +26,7 @@
 
 		//console.log(typeof window.myPhotoSwpie_0);
 		if (typeof window.myPhotoSwpie_0 == 'undefined') {
-			{% for g in gallery.gal|keys %}
+			{% for var g in gallery.gal|keys %}
 				window.myPhotoSwipe_{{ loop.index0 }} = $("#galeria_{{ loop.index0 }} li a").photoSwipe(v);
 				window.myPhotoSwipe_{{ loop.index0 }}.addEventHandler(window.Code.PhotoSwipe.EventTypes.onShow, f);
 

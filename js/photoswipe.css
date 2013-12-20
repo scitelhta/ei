@@ -126,8 +126,7 @@ div.ps-toolbar div div.ps-toolbar-content
 	width: 44px;
 	height: 44px;
 	margin: 0 auto 0;
-	background-image: url(icons.png);
-	background-repeat: no-repeat;
+    background: url(icons.png) no-repeat;
 }
 
 div.ps-toolbar-close div.ps-toolbar-content

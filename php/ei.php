@@ -114,4 +114,3 @@ function do_get_ei() {
 
 
 
-?>

@@ -96,4 +96,3 @@ $p = query($query);
 
 
 
-?>
