@@ -42,7 +42,8 @@ $data["errorhtml"] = "404.html";
 
 
 $data["paginas"] = array(
-	array("name"=>"about", "title"=>"Inicio", "title2"=>"Fundación"),
+	array("name"=>"home", "title"=>"Inicio", "title2"=>"Estudiantes del Instante"),
+    array("name"=>"about", "title"=>"Fundación", "title2"=>"Fundación"),
 	array("name"=>"events", "title"=>"Eventos", "title2"=>"Próximos Eventos"),
 	array("name"=>"media", "title"=>"Música", "title2"=>"Música y Videos"),
 	array("name"=>"gallery", "title"=>"Galería", "title2"=>"Galería de Imágenes"),

@@ -30,7 +30,7 @@ function do_get_about($files) {
 //    $files = about_files();
     global $do, $alias;
     $gdo = strtolower($do);
-    if (!$gdo) $gdo = "about";
+    if (!$gdo) $gdo = "home";
 
 
     $ll = 200;

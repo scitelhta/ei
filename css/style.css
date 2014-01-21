@@ -134,50 +134,51 @@ left: 0;
 	background-image: url("../images/gallery.png") !important;
 }
 
+
 .ui-icon-menu {
-    background-image: url("../images/menu.png") !important;
+    _background-image: url("../images/menu.png") !important;
 }
 .ui-icon-sol {
-    background-image: url("../images/blog.png") !important;
+    _background-image: url("../images/blog.png") !important;
 }
 .ui-icon-libro {
-    background-image: url("../images/porquerielabrisa.png") !important;
+    _background-image: url("../images/porquerielabrisa.png") !important;
 }
 .ui-icon-galeria {
-     background-image: url("../images/gallery.png") !important;
+    _background-image: url("../images/gallery.png") !important;
  }
 
-.ui-icon-about {
+.ui-icon-about:after  {
     background-image: url("../images/ei18.png") !important;
 }
-.ui-icon-funciones {
+.ui-icon-funciones:after  {
     background-image: url("../images/funciones.png") !important;
 }
-.ui-icon-mvision {
+.ui-icon-mvision:after  {
     background-image: url("../images/mvision.png") !important;
 }
 
-.ui-icon-yage {
+.ui-icon-yage:after  {
     background-image: url("../images/ayahuasca.png") !important;
 }
 
-.ui-icon-meditacion {
+.ui-icon-meditacion:after  {
     background-image: url("../images/meditacion.png") !important;
 }
 
-.ui-icon-instrumentos {
+.ui-icon-instrumentos:after  {
     background-image: url("../images/instrumentos.png") !important;
 }
 
-.ui-icon-abrazos {
+.ui-icon-abrazos:after  {
     background-image: url("../images/abrazos.png") !important;
 }
 
-.ui-icon-terapias {
+.ui-icon-terapias:after  {
     background-image: url("../images/terapias.png") !important;
 }
 
-.ui-icon-permacultura {
+.ui-icon-permacultura:after  {
     background-image: url("../images/permacultura.png") !important;
 }
 
